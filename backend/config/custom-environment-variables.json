@@ -1,0 +1,4 @@
+{
+  "jwtPrivateKey": "doctonise_jwtPrivateKey",
+  "db": "doctonise_db"
+}
