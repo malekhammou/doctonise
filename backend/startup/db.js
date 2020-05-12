@@ -10,5 +10,8 @@ module.exports = function () {
       useFindAndModify: false,
       useCreateIndex: true,
     })
-    .then(() => console.log(`Connected to ${db}...`));
+    .then(() => console.log(`Connected to ${db}...`))
+    .catch(() => {
+      console.log("Something failed");
+    });
 };

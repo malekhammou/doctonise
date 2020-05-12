@@ -4,8 +4,7 @@ const express = require("express");
 const router = express.Router();
 const _ = require("lodash");
 const bcrypt = require("bcryptjs");
-
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   const doctors = await Doctor.find();
   res.send(doctors);
 });
@@ -33,22 +32,18 @@ router.post("/", async (req, res) => {
 router.put("/:id", validateObjectId, async (req, res) => {
   const { error } = validate(req.body);
   if (error) res.status(400).send(error.details[0].message);
-  try {
-    const doctor = await Doctor.findByIdAndUpdate(
-      req.params.id,
-      {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        passsword: req.body.passsword,
-      },
-      { new: true }
-    );
-    if (!doctor) return res.status(404).send("Utilisateur introuvable");
-    res.send(doctor);
-  } catch (exception) {
-    res.send("Cette addresse est déjà associé à un autre utilisateur.");
-  }
+  const doctor = await Doctor.findByIdAndUpdate(
+    req.params.id,
+    {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      passsword: req.body.passsword,
+    },
+    { new: true }
+  );
+  if (!doctor) return res.status(404).send("Utilisateur introuvable");
+  res.send(doctor);
 });
 router.delete("/:id", validateObjectId, async (req, res) => {
   const doctor = await Doctor.findByIdAndRemove(req.params.id);
