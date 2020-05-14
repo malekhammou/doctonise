@@ -3,8 +3,8 @@ const validateObjectId = require("../middleware/validateObjectId");
 const express = require("express");
 const router = express.Router();
 const _ = require("lodash");
-router.get("/", async (req, res) => {
-  const patients = await Patient.find({});
+router.get("/:doctorId", async (req, res) => {
+  const patients = await Patient.find({ doctorId: req.params.doctorId });
   res.send(patients);
 });
 router.get("/:id", validateObjectId, async (req, res) => {

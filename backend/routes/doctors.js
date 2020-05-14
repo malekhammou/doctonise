@@ -4,6 +4,9 @@ const express = require("express");
 const router = express.Router();
 const _ = require("lodash");
 const bcrypt = require("bcryptjs");
+const mongoose = require("mongoose");
+const Fawn = require("fawn");
+Fawn.init(mongoose);
 router.get("/", async (req, res, next) => {
   const doctors = await Doctor.find();
   res.send(doctors);
@@ -46,8 +49,12 @@ router.put("/:id", validateObjectId, async (req, res) => {
   res.send(doctor);
 });
 router.delete("/:id", validateObjectId, async (req, res) => {
-  const doctor = await Doctor.findByIdAndRemove(req.params.id);
+  const doctor = await Doctor.findById(req.params.id);
   if (!doctor) return res.status(404).send("Utilisateur introuvable");
+  await new Fawn.Task()
+    .remove("patients", { doctorId: mongoose.Types.ObjectId(req.params.id) })
+    .remove("doctors", { _id: mongoose.Types.ObjectId(req.params.id) })
+    .run();
   res.send(doctor);
 });
 module.exports = router;
