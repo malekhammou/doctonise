@@ -6,14 +6,16 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <button
-        className="btn btn-primary"
+        id="nav-button"
         onClick={() => {
           setDrawer(!drawer);
           setBackDrop(!backDrop);
         }}
       >
         {" "}
-        TEST
+        <div className="button-line"></div>
+        <div className="button-line"></div>
+        <div className="button-line"></div>
       </button>
     </nav>
   );
