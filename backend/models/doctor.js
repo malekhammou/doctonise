@@ -15,7 +15,15 @@ const doctorSchema = new mongoose.Schema({
   password: { type: String, minlength: 5, maxlength: 255 },
 });
 doctorSchema.methods.generateAuthToken = function () {
-  const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
+  const token = jwt.sign(
+    {
+      _id: this._id,
+      firstname: this.firstname,
+      lastname: this.lastname,
+      email: this.email,
+    },
+    config.get("jwtPrivateKey")
+  );
   return token;
 };
 const Doctor = new mongoose.model("Doctor", doctorSchema);

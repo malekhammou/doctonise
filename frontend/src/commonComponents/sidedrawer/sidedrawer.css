@@ -1,0 +1,14 @@
+.drawer {
+  background-color: #28464e;
+  width: 60%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  transition: all 0.3s ease-out;
+  z-index: 200;
+}
+.closed-drawer {
+  transform: translateX(-100%);
+}
