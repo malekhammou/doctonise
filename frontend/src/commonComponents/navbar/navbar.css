@@ -1,5 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 .navbar {
   background-color: #28464e;
+  display: flex;
+  flex-direction: row-reverse;
+  color: white;
+  font-family: "Poppins", sans-serif;
 }
 #nav-button {
   display: flex;
@@ -21,4 +26,17 @@
 #nav-button:focus,
 #nav-button :active {
   outline: none;
+}
+.online-icon {
+  height: 0.5em;
+  width: 0.5em;
+  border-radius: 50%;
+  background-color: #71c846;
+  margin: 0.3em 0 0 0.5em;
+}
+.greeting-message {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

@@ -6,6 +6,7 @@ import React, { useContext, useEffect } from "react";
 import { AppContext } from "./context/appContext";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { getcurrentUser } from "./services/userService";
+import Logout from "./components/logout";
 function App() {
   const { setUser } = useContext(AppContext);
   useEffect(() => {
@@ -17,6 +18,7 @@ function App() {
       <Switch>
         <Route path="/startup" component={Startup} />
         <ProtectedRoute path="/homepage" component={HomePage} />
+        <ProtectedRoute path="/logout" component={Logout} />
         <Redirect from="/" exact to="/startup" />
       </Switch>
     </div>
