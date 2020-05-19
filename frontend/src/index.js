@@ -6,11 +6,14 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./context/appContext";
+import { PatientProvider } from "./context/patientContext";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AppProvider>
-        <App />
+        <PatientProvider>
+          <App />
+        </PatientProvider>
       </AppProvider>
     </BrowserRouter>
   </React.StrictMode>,

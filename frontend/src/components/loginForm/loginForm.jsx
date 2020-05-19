@@ -37,7 +37,7 @@ class LoginForm extends Form {
   doSubmit = async () => {
     try {
       await login(this.state.data);
-      window.location = "/homepage";
+      window.location = "/home";
     } catch (exception) {
       if (exception.response && exception.response.status === 400) {
         const errors = { ...this.state.errors };

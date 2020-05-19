@@ -9,6 +9,9 @@
   margin: 4em 0 1em 0;
 }
 .main-wrapper {
-  align-items: center;
   height: 100vh;
+  background-color: white;
+}
+.wrapper {
+  width: 100%;
 }

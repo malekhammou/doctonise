@@ -4,52 +4,113 @@ import { AppContext } from "../../context/appContext";
 import { NavLink } from "react-router-dom";
 
 const SideDrawer = () => {
-  const { drawer } = useContext(AppContext);
+  const { drawer, setDrawer, setBackDrop } = useContext(AppContext);
   return (
     <div className={drawer ? "drawer" : "closed-drawer"}>
       <ul className="side-drawer-options">
-        <li className="side-drawer-option">
-          <img
-            className="option-icon"
-            src={require("../../photos/statistics.png")}
-            alt="doctonise-logo"
-          />
-          Statistiques{" "}
-        </li>
-        <li className="side-drawer-option">
-          <img
-            className="option-icon"
-            src={require("../../photos/calendar.png")}
-            alt="doctonise-logo"
-          />
-          Calendrier{" "}
-        </li>
-        <li className="side-drawer-option">
-          {" "}
-          <img
-            className="option-icon"
-            src={require("../../photos/patient.png")}
-            alt="doctonise-logo"
-          />
-          Patients
-        </li>
+        <NavLink
+          onClick={() => {
+            setDrawer(false);
+            setBackDrop(false);
+          }}
+          className="navlink"
+          to="/home"
+        >
+          <li className="side-drawer-option">
+            <img
+              className="option-icon"
+              src={require("../../photos/home.png")}
+              alt="accueil-logo"
+            />
+            Accueil{" "}
+          </li>
+        </NavLink>
+        <NavLink
+          onClick={() => {
+            setDrawer(false);
+            setBackDrop(false);
+          }}
+          className="navlink"
+          to="/statistiques"
+        >
+          <li className="side-drawer-option">
+            <img
+              className="option-icon"
+              src={require("../../photos/statistics.png")}
+              alt="statistiques-logo"
+            />
+            Statistiques{" "}
+          </li>
+        </NavLink>
 
-        <li className="side-drawer-option">
-          {" "}
-          <img
-            className="option-icon"
-            src={require("../../photos/clock.png")}
-            alt="doctonise-logo"
-          />
-          Rendez-vous
-        </li>
-        <NavLink className="navlink" to="/logout">
+        <NavLink
+          onClick={() => {
+            setDrawer(false);
+            setBackDrop(false);
+          }}
+          className="navlink"
+          to="/calendrier"
+        >
+          <li className="side-drawer-option">
+            <img
+              className="option-icon"
+              src={require("../../photos/calendar.png")}
+              alt="calendrier-logo"
+            />
+            Calendrier{" "}
+          </li>
+        </NavLink>
+        <NavLink
+          onClick={() => {
+            setDrawer(false);
+            setBackDrop(false);
+          }}
+          className="navlink"
+          to="/home/patients"
+        >
+          <li className="side-drawer-option">
+            {" "}
+            <img
+              className="option-icon"
+              src={require("../../photos/patient.png")}
+              alt="patient-logo"
+            />
+            Patients
+          </li>
+        </NavLink>
+
+        <NavLink
+          onClick={() => {
+            setDrawer(false);
+            setBackDrop(false);
+          }}
+          className="navlink"
+          to="/rendez-vous"
+        >
+          <li className="side-drawer-option">
+            {" "}
+            <img
+              className="option-icon"
+              src={require("../../photos/clock.png")}
+              alt="rendezvous-logo"
+            />
+            Rendez-vous
+          </li>
+        </NavLink>
+        <NavLink
+          onClick={() => {
+            setDrawer(false);
+            setBackDrop(false);
+          }}
+          className="navlink"
+          to="/logout"
+        >
           <li className="side-drawer-option">
             {" "}
             <img
               className="option-icon"
               src={require("../../photos/logout.png")}
-              alt="doctonise-logo"
+              alt="logout-logo"
             />
             Se déconnecter
           </li>

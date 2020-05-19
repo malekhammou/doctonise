@@ -1,25 +1,22 @@
+import React from "react";
+import "./App.css";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Startup from "./components/startup";
 import HomePage from "./components/homePage/homePage";
-import ProtectedRoute from "./commonComponents/protectedRoute";
-import "./App.css";
-import React, { useContext, useEffect } from "react";
-import { AppContext } from "./context/appContext";
-import { Switch, Route, Redirect } from "react-router-dom";
-import { getcurrentUser } from "./services/userService";
 import Logout from "./components/logout";
+import ProtectedRoute from "./commonComponents/protectedRoute";
+import NotFound from "./commonComponents/notfound/notfound";
+
 function App() {
-  const { setUser } = useContext(AppContext);
-  useEffect(() => {
-    const user = getcurrentUser();
-    setUser(user);
-  }, [setUser]);
   return (
     <div className="App">
       <Switch>
-        <Route path="/startup" component={Startup} />
-        <ProtectedRoute path="/homepage" component={HomePage} />
-        <ProtectedRoute path="/logout" component={Logout} />
-        <Redirect from="/" exact to="/startup" />
+        <Route path="/startup" exact component={Startup} />
+        <ProtectedRoute path="/logout" exact component={Logout} />
+        <ProtectedRoute path="/not-found" component={NotFound} />
+        <ProtectedRoute path="/home" component={HomePage} />{" "}
+        <Redirect path="/" exact to="/home" />
+        <Redirect to="/not-found" />
       </Switch>
     </div>
   );
