@@ -1,6 +1,10 @@
 .search-box {
   width: 15em;
   border-radius: 2em;
+  font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
 }
 .search-box-wrapper {
   display: flex;
