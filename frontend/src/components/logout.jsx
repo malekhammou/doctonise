@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-const Logout = () => {
+const Logout = ({ history }) => {
   useEffect(() => {
     localStorage.removeItem("token");
-    window.location = "/";
+    history.replace("/");
   });
 
   return null;

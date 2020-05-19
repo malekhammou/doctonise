@@ -1,7 +1,10 @@
 import React from "react";
 import LoginForm from "./loginForm/loginForm";
+import { Redirect } from "react-router-dom";
 const Startup = () => {
-  return (
+  return localStorage.getItem("token") ? (
+    <Redirect to="/home" />
+  ) : (
     <div className="main-wrapper">
       <img
         className="logo"

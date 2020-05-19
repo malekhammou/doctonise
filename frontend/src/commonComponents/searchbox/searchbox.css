@@ -1,0 +1,10 @@
+.search-box {
+  width: 15em;
+  border-radius: 2em;
+}
+.search-box-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0.6em;
+  width: 100%;
+}

@@ -13,7 +13,7 @@
   box-shadow: 0.5em 0 0.5em -0.5em black;
 }
 .closed-drawer {
-  transform: translateX(-100%);
+  transform: translateX(-120%);
   position: absolute;
 }
 .side-drawer-options {
