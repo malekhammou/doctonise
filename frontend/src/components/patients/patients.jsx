@@ -18,6 +18,9 @@ const Patients = () => {
     }
 
     getAllPatients();
+    return () => {
+      setQuery("");
+    };
   }, [user._id, setPatients]);
   const handleSearch = (query) => {
     setQuery(query);
