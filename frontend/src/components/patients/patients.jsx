@@ -4,6 +4,7 @@ import { AppContext } from "../../context/appContext";
 import "./patients.css";
 import { getpatients } from "../../services/patientService";
 import SearchBox from "../../commonComponents/searchbox/searchbox";
+import { NavLink } from "react-router-dom";
 const Patients = () => {
   let { user } = useContext(AppContext);
   let { patients, setPatients, query, setQuery } = useContext(PatientContext);
@@ -34,9 +35,14 @@ const Patients = () => {
         </div>
         <div className="patients-list">
           {filtered.map((patient) => (
-            <div key={patient._id} className="patient-item">
-              <span>{`${patient.firstname} ${patient.lastname}`}</span>
-            </div>
+            <NavLink
+              className="patient-navlink"
+              to={`/home/patients/${patient._id}`}
+            >
+              <div key={patient.firstname} className="patient-item">
+                <span>{`${patient.firstname} ${patient.lastname}`}</span>
+              </div>
+            </NavLink>
           ))}
         </div>
       </div>
