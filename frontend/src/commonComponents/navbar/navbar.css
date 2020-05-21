@@ -1,10 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 .navbar {
-  background-color: #28464e;
+  background-color: #f2f5f9;
   display: flex;
   flex-direction: row-reverse;
-  color: white;
+  color: black;
   font-family: "Poppins", sans-serif;
+  font-weight: 700;
 }
 #nav-button {
   display: flex;
@@ -19,7 +20,7 @@
   background-color: transparent;
 }
 .button-line {
-  background-color: white;
+  background-color: black;
   height: 1px;
   width: 30px;
 }

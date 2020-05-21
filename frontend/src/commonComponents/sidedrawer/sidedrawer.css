@@ -1,16 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 .drawer {
   font-family: "Poppins", sans-serif;
-  background-color: #28464e;
-  width: 14.5em;
-  border-bottom-right-radius: 6em;
+  background-color: #f2f5f9;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 2.5em;
   left: 0;
   transform: translateX(0);
   transition: all 0.2s ease-in-out;
   z-index: 200;
-  box-shadow: 0.5em 0 0.5em -0.5em black;
 }
 .closed-drawer {
   transform: translateX(-120%);
@@ -19,25 +18,23 @@
 .side-drawer-options {
   width: 100%;
   list-style: none;
-  color: white;
-  padding: 0;
+  color: black;
+  padding: 0.5em;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .side-drawer-option {
   width: 80%;
   margin-left: 0.1em;
+  margin-top: 1em;
   padding-left: 0.5em;
   text-align: justify;
   cursor: pointer;
   font-size: 1.1em;
 }
-.side-drawer-option:hover {
-  background-color: hsl(193, 30%, 18%);
-  border-radius: 2em;
-}
+
 .option-icon {
   height: 1.6em;
   width: 1.6em;
@@ -47,9 +44,9 @@
   padding: 0;
   height: fit-content;
   margin-top: 0.7em;
-  color: white;
+  color: black;
 }
 .navlink:hover {
   text-decoration: none;
-  color: white;
+  color: black;
 }
