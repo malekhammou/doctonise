@@ -32,7 +32,7 @@ const Patients = () => {
 
   return (
     <div className="wrapper">
-      <div className="patients-wrapper">
+      <div className="patients-wrapper ">
         <div className="search-box-wrapper">
           <SearchBox value={query} onChange={handleSearch} />
         </div>
