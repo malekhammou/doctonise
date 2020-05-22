@@ -5,6 +5,7 @@ const Navbar = () => {
   const { user, drawer, setDrawer, backDrop, setBackDrop } = useContext(
     AppContext
   );
+
   return (
     <nav className="navbar">
       <span className="greeting-message">

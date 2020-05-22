@@ -39,10 +39,11 @@ const Patients = () => {
         <div className="patients-list">
           {filtered.map((patient) => (
             <NavLink
+              key={patient._id}
               className="patient-navlink"
               to={`/home/patients/${patient._id}`}
             >
-              <div key={patient.firstname} className="patient-item">
+              <div key={patient._id} className="patient-item">
                 <span>{`${patient.firstname} ${patient.lastname}`}</span>
               </div>
             </NavLink>
