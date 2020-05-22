@@ -8,7 +8,7 @@ const SideDrawer = () => {
   const { drawer, setDrawer, setBackDrop } = useContext(AppContext);
   useScreenLock();
   return (
-    <div id="sidedrawer" className={drawer ? "drawer" : "closed-drawer"}>
+    <div className={drawer ? "drawer" : "closed-drawer"}>
       <ul className="side-drawer-options">
         <NavLink
           onClick={() => {

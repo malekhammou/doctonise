@@ -6,7 +6,7 @@ import { getpatients } from "../../services/patientService";
 import SearchBox from "../../commonComponents/searchbox/searchbox";
 import { NavLink } from "react-router-dom";
 const Patients = () => {
-  let { user, setDrawer } = useContext(AppContext);
+  let { user, setDrawer, setMenu } = useContext(AppContext);
   let { patients, setPatients, query, setQuery } = useContext(PatientContext);
 
   useEffect(() => {
@@ -16,6 +16,7 @@ const Patients = () => {
         setPatients(Allpatients);
       }
     }
+    setMenu(false);
     setDrawer(false);
     getAllPatients();
     return () => {
