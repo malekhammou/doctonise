@@ -38,7 +38,7 @@ const Navbar = () => {
           <li className="menu-option">
             {" "}
             <img
-              className="option-icon"
+              className="option-icon-desktop"
               src={require("../../photos/logout.png")}
               alt="logout-logo"
             />

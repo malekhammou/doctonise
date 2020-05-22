@@ -21,7 +21,8 @@
   padding-left: 0.5em;
   text-align: justify;
   cursor: pointer;
-  font-size: 1.1em;
+  font-size: 0.9em;
+  font-weight: 600;
 }
 #nav-button {
   display: flex;
@@ -57,7 +58,7 @@
 .menu {
   border: gray solid 0.03em;
   position: absolute;
-  top: 4.9em;
+  top: 4.4em;
   right: 0.05em;
   padding-right: 1em;
   height: fit-content;
@@ -68,11 +69,18 @@
   display: none;
 }
 .menu-option {
-  padding: 0.2em;
+  padding: 0.15em;
+  font-size: 0.8em;
+}
+.option-icon-desktop {
+  height: 1.4em;
+  margin-right: 0.157em;
+  vertical-align: text-bottom;
 }
 .greeting-message {
   max-width: 50%;
   display: flex;
+  font-size: 0.9em;
   justify-content: flex-end;
   align-items: center;
 }
@@ -90,7 +98,7 @@
   text-decoration: none;
   color: black;
 }
-@media (min-width: 1090px) {
+@media (min-width: 750px) {
   #nav-button {
     display: none;
   }
@@ -104,7 +112,7 @@
     display: none;
   }
 }
-@media (max-width: 1090px) {
+@media (max-width: 750px) {
   .side-drawer-options-desktop {
     display: none;
   }
