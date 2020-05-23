@@ -15,9 +15,9 @@ const SideDrawer = () => {
           (element) =>
             element.alt !== "logout2" && (
               <NavbarNavlink
-                className={element.className[1]}
-                listItemClassName={element.className[2]}
-                imgClassName={element.className[7]}
+                className={element.className.navlink}
+                listItemClassName={element.className.sideDrawerOption}
+                imgClassName={element.className.optionicon}
                 key={element.destination}
                 onClick={element.onClick}
                 text={element.text}

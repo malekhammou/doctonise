@@ -18,9 +18,9 @@ const Navbar = () => {
       <div className={menu ? "menu no-select" : "hidden-menu"}>
         {" "}
         <NavbarNavlink
-          className={element.className[5]}
-          listItemClassName={element.className[6]}
-          imgClassName={element.className[4]}
+          className={element.className.logoutNavlink}
+          listItemClassName={element.className.menuOption}
+          imgClassName={element.className.optionIconDesktop}
           key={element.destination}
           onClick={element.onClick}
           text={element.text}
@@ -34,9 +34,9 @@ const Navbar = () => {
           (element) =>
             element.destination !== "logout" && (
               <NavbarNavlink
-                className={element.className[0]}
-                listItemClassName={element.className[3]}
-                imgClassName={element.className[7]}
+                className={element.className.navlinkDesktop}
+                listItemClassName={element.className.sideDrawerOptionDesktop}
+                imgClassName={element.className.optionicon}
                 key={element.destination}
                 onClick={element.onClick}
                 text={element.text}
