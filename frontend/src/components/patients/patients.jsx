@@ -5,9 +5,18 @@ import "./patients.css";
 import { getpatients } from "../../services/patientService";
 import SearchBox from "../../commonComponents/searchbox/searchbox";
 import { NavLink } from "react-router-dom";
+import Pagination from "../../utils/paginate";
 const Patients = () => {
   let { user, setDrawer, setMenu } = useContext(AppContext);
-  let { patients, setPatients, query, setQuery } = useContext(PatientContext);
+  let {
+    patients,
+    setPatients,
+    query,
+    setQuery,
+    currentPage,
+    setCurrentPage,
+    patientsPerPage,
+  } = useContext(PatientContext);
 
   useEffect(() => {
     async function getAllPatients() {
@@ -19,18 +28,31 @@ const Patients = () => {
     setMenu(false);
     setDrawer(false);
     getAllPatients();
+
     return () => {
       setQuery("");
     };
-  }, [user._id, setPatients]);
+  }, [user._id, setPatients, setDrawer, setMenu, setQuery]);
   const handleSearch = (query) => {
+    setCurrentPage(1);
     setQuery(query);
   };
   let filtered = patients.filter((p) => {
     let fullname = `${p.firstname} ${p.lastname}`;
     return fullname.toLowerCase().includes(query.toLowerCase());
   });
-
+  const indexOfLastPatient = currentPage * patientsPerPage;
+  const indexOfFirstPatient = indexOfLastPatient - patientsPerPage;
+  let paginated = filtered.slice(indexOfFirstPatient, indexOfLastPatient);
+  const numberOfPages = Math.ceil(filtered.length / patientsPerPage);
+  let reachedLastPage = currentPage === numberOfPages;
+  let reachedFirstPage = currentPage === 1;
+  const paginatePrevious = (pageNumber) => {
+    setCurrentPage(currentPage - 1);
+  };
+  const paginateNext = (pageNumber) => {
+    setCurrentPage(currentPage + 1);
+  };
   return (
     <div className="wrapper">
       <div className="patients-wrapper ">
@@ -38,7 +60,7 @@ const Patients = () => {
           <SearchBox value={query} onChange={handleSearch} />
         </div>
         <div className="patients-list">
-          {filtered.map((patient) => (
+          {paginated.map((patient) => (
             <NavLink
               key={patient._id}
               className="patient-navlink"
@@ -50,6 +72,14 @@ const Patients = () => {
             </NavLink>
           ))}
         </div>
+        {filtered.length > patientsPerPage && (
+          <Pagination
+            paginatePrevious={paginatePrevious}
+            paginateNext={paginateNext}
+            reachedFirstPage={reachedFirstPage}
+            reachedLastPage={reachedLastPage}
+          />
+        )}
       </div>
     </div>
   );

@@ -55,8 +55,3 @@
   text-decoration: none;
   color: black;
 }
-@media (min-width: 620px) {
-  .drawer {
-    width: 16em;
-  }
-}
