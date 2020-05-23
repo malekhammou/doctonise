@@ -1,10 +1,10 @@
 import React, { useState, createContext, useContext } from "react";
 import { AppContext } from "./appContext";
 export const NavbarContext = createContext();
-
 export const NavbarProvider = (props) => {
-  const { setBackDrop, setMenu, setDrawer } = useContext(AppContext);
-
+  const { drawer, backDrop, setBackDrop, setMenu, setDrawer } = useContext(
+    AppContext
+  );
   const [elements] = useState([
     {
       onClick: function handleHide() {
@@ -16,6 +16,16 @@ export const NavbarProvider = (props) => {
       icon: "home",
       alt: "home",
       destination: "home",
+      className: [
+        "navlink-desktop",
+        "navlink",
+        "side-drawer-option",
+        "side-drawer-option-desktop",
+        "option-icon-desktop",
+        "logout-navlink",
+        "menu-option",
+        "option-icon",
+      ],
     },
     {
       onClick: function handleHide() {
@@ -27,6 +37,16 @@ export const NavbarProvider = (props) => {
       icon: "statistics",
       alt: "statistics",
       destination: "statistiques",
+      className: [
+        "navlink-desktop",
+        "navlink",
+        "side-drawer-option",
+        "side-drawer-option-desktop",
+        "option-icon-desktop",
+        "logout-navlink",
+        "menu-option",
+        "option-icon",
+      ],
     },
     {
       onClick: function handleHide() {
@@ -38,6 +58,16 @@ export const NavbarProvider = (props) => {
       icon: "calendar",
       alt: "calendar",
       destination: "calendrier",
+      className: [
+        "navlink-desktop",
+        "navlink",
+        "side-drawer-option",
+        "side-drawer-option-desktop",
+        "option-icon-desktop",
+        "logout-navlink",
+        "menu-option",
+        "option-icon",
+      ],
     },
     {
       onClick: function handleHide() {
@@ -45,10 +75,20 @@ export const NavbarProvider = (props) => {
         setBackDrop(false);
         setMenu(false);
       },
-      text: "Patient",
+      text: "Patients",
       icon: "patient",
       alt: "patient",
       destination: "home/patients",
+      className: [
+        "navlink-desktop",
+        "navlink",
+        "side-drawer-option",
+        "side-drawer-option-desktop",
+        "option-icon-desktop",
+        "logout-navlink",
+        "menu-option",
+        "option-icon",
+      ],
     },
     {
       onClick: function handleHide() {
@@ -60,10 +100,65 @@ export const NavbarProvider = (props) => {
       icon: "clock",
       alt: "rendezvous",
       destination: "rendezvous",
+      className: [
+        "navlink-desktop",
+        "navlink",
+        "side-drawer-option",
+        "side-drawer-option-desktop",
+        "option-icon-desktop",
+        "logout-navlink",
+        "menu-option",
+        "option-icon",
+      ],
+    },
+    {
+      onClick: function handleHide() {
+        setDrawer(false);
+        setBackDrop(false);
+        setMenu(false);
+      },
+      text: "Se déconnecter",
+      icon: "logout",
+      alt: "logout",
+      destination: "logout",
+      className: [
+        "navlink-desktop",
+        "navlink",
+        "side-drawer-option",
+        "side-drawer-option-desktop",
+        "option-icon-desktop",
+        "logout-navlink",
+        "menu-option",
+        "option-icon",
+      ],
+    },
+    {
+      onClick: function handleHide() {
+        setDrawer(false);
+        setBackDrop(false);
+      },
+      text: "Se déconnecter",
+      icon: "logout",
+      alt: "logout2",
+      destination: "logout",
+      className: [
+        "navlink-desktop",
+        "navlink",
+        "side-drawer-option",
+        "side-drawer-option-desktop",
+        "option-icon-desktop",
+        "logout-navlink",
+        "menu-option",
+        "option-icon",
+      ],
     },
   ]);
-
-  const value = { elements };
+  const handleNavButtonClick = () => {
+    setDrawer(!drawer);
+    setBackDrop(!backDrop);
+    setMenu(false);
+  };
+  const value = { elements, handleNavButtonClick };
   return (
     <NavbarContext.Provider value={value}>
       {props.children}

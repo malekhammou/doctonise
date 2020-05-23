@@ -58,7 +58,7 @@
 .menu {
   border: gray solid 0.03em;
   position: absolute;
-  top: 4.4em;
+  top: 3.3em;
   right: 0.05em;
   padding-right: 1em;
   height: fit-content;
@@ -110,6 +110,10 @@
   }
   .drawer {
     display: none;
+  }
+  .navbar {
+    padding-bottom: 0;
+    padding-top: 0;
   }
 }
 @media (max-width: 750px) {

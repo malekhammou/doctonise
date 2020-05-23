@@ -1,122 +1,32 @@
 import React, { useContext } from "react";
 import "./sidedrawer.css";
 import { AppContext } from "../../context/appContext";
-import { NavLink } from "react-router-dom";
+import NavbarNavlink from "../../components/navbar-navlink/navbar-navlink";
 import useScreenLock from "../../hooks/useScreenLock";
+import { NavbarContext } from "../../context/navbarContext";
 const SideDrawer = () => {
-  const { setBackDrop, drawer, setDrawer } = useContext(AppContext);
-
+  const { drawer } = useContext(AppContext);
+  const { elements } = useContext(NavbarContext);
   useScreenLock();
   return (
     <div className={drawer ? "drawer" : "closed-drawer"}>
       <ul className="side-drawer-options">
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-          }}
-          className="navlink"
-          to="/home"
-        >
-          <li className="side-drawer-option">
-            <img
-              className="option-icon"
-              src={require("../../photos/home.png")}
-              alt="accueil-logo"
-            />
-            Accueil{" "}
-          </li>
-        </NavLink>
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-          }}
-          className="navlink"
-          to="/statistiques"
-        >
-          <li className="side-drawer-option">
-            <img
-              className="option-icon"
-              src={require("../../photos/statistics.png")}
-              alt="statistiques-logo"
-            />
-            Statistiques{" "}
-          </li>
-        </NavLink>
-
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-          }}
-          className="navlink"
-          to="/calendrier"
-        >
-          <li className="side-drawer-option">
-            <img
-              className="option-icon"
-              src={require("../../photos/calendar.png")}
-              alt="calendrier-logo"
-            />
-            Calendrier{" "}
-          </li>
-        </NavLink>
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-          }}
-          className="navlink"
-          to="/home/patients"
-        >
-          <li className="side-drawer-option">
-            {" "}
-            <img
-              className="option-icon"
-              src={require("../../photos/patient.png")}
-              alt="patient-logo"
-            />
-            Patients
-          </li>
-        </NavLink>
-
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-          }}
-          className="navlink"
-          to="/rendez-vous"
-        >
-          <li className="side-drawer-option">
-            {" "}
-            <img
-              className="option-icon"
-              src={require("../../photos/clock.png")}
-              alt="rendezvous-logo"
-            />
-            Rendez-vous
-          </li>
-        </NavLink>
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-          }}
-          className="navlink"
-          to="/logout"
-        >
-          <li className="side-drawer-option">
-            {" "}
-            <img
-              className="option-icon"
-              src={require("../../photos/logout.png")}
-              alt="logout-logo"
-            />
-            Se déconnecter
-          </li>
-        </NavLink>
+        {elements.map(
+          (element) =>
+            element.alt !== "logout2" && (
+              <NavbarNavlink
+                className={element.className[1]}
+                listItemClassName={element.className[2]}
+                imgClassName={element.className[7]}
+                key={element.destination}
+                onClick={element.onClick}
+                text={element.text}
+                icon={element.icon}
+                alt={element.alt}
+                destination={element.destination}
+              />
+            )
+        )}
       </ul>
     </div>
   );

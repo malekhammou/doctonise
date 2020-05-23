@@ -1,16 +1,25 @@
 import React from "react";
 import "../../commonComponents/navbar/navbar.css";
 import { NavLink } from "react-router-dom";
-const NavbarNavlink = ({ onClick, text, icon, alt, destination }) => {
+const NavbarNavlink = ({
+  onClick,
+  text,
+  icon,
+  alt,
+  destination,
+  className,
+  listItemClassName,
+  imgClassName,
+}) => {
   return (
     <NavLink
       onClick={onClick}
-      className="navlink-desktop"
+      className={`${className}`}
       to={`/${destination}`}
     >
-      <li className="side-drawer-option-desktop">
+      <li className={`${listItemClassName}`}>
         <img
-          className="option-icon"
+          className={`${imgClassName}`}
           src={require(`../../photos/${icon}.png`)}
           alt={`${alt}-logo`}
         />
