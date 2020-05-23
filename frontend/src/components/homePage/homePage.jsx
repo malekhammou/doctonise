@@ -7,6 +7,7 @@ import Patients from "../../components/patients/patients";
 import Backdrop from "../../commonComponents/backdrop/backdrop";
 import PatientFile from "../patientFile/patientFile";
 import { AppContext } from "../../context/appContext";
+
 const HomePage = () => {
   const { drawer } = useContext(AppContext);
   return (

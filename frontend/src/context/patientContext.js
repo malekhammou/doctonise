@@ -5,6 +5,7 @@ export const PatientProvider = (props) => {
   const [query, setQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [patientsPerPage, setPatientsPerPage] = useState(8);
+
   const value = {
     patients,
     setPatients,

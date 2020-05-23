@@ -15,7 +15,7 @@ const Pagination = ({
             className="pagination-button"
             onClick={() => paginatePrevious(1)}
           >
-            <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+            <i className="fa fa-angle-double-left" aria-hidden="true"></i>
           </button>
         </li>
         <li className="page-item">
@@ -24,7 +24,7 @@ const Pagination = ({
             className="pagination-button"
             onClick={() => paginateNext(1)}
           >
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <i className="fa fa-angle-double-right" aria-hidden="true"></i>
           </button>
         </li>
       </ul>

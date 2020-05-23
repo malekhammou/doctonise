@@ -3,9 +3,9 @@ import "./sidedrawer.css";
 import { AppContext } from "../../context/appContext";
 import { NavLink } from "react-router-dom";
 import useScreenLock from "../../hooks/useScreenLock";
-
 const SideDrawer = () => {
-  const { drawer, setDrawer, setBackDrop } = useContext(AppContext);
+  const { setBackDrop, drawer, setDrawer } = useContext(AppContext);
+
   useScreenLock();
   return (
     <div className={drawer ? "drawer" : "closed-drawer"}>

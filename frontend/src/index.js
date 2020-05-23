@@ -8,13 +8,16 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./context/appContext";
 import { PatientProvider } from "./context/patientContext";
+import { NavbarProvider } from "./context/navbarContext";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AppProvider>
-        <PatientProvider>
-          <App />
-        </PatientProvider>
+        <NavbarProvider>
+          <PatientProvider>
+            <App />
+          </PatientProvider>
+        </NavbarProvider>
       </AppProvider>
     </BrowserRouter>
   </React.StrictMode>,

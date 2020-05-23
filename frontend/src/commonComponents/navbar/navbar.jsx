@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import "./navbar.css";
 import { AppContext } from "../../context/appContext";
 import { NavLink } from "react-router-dom";
+import NavbarNavlink from "../../components/navbar-navlink/navbar-navlink";
+import NavButton from "../../components/nav-button/nav-button";
+import { NavbarContext } from "../../context/navbarContext";
 const Navbar = () => {
   const {
     user,
@@ -12,7 +15,13 @@ const Navbar = () => {
     menu,
     setMenu,
   } = useContext(AppContext);
+  const { elements } = useContext(NavbarContext);
 
+  const handleNavButtonClick = () => {
+    setDrawer(!drawer);
+    setBackDrop(!backDrop);
+    setMenu(false);
+  };
   return (
     <nav className="navbar">
       <span className="greeting-message">
@@ -22,7 +31,7 @@ const Navbar = () => {
           onClick={() => {
             setMenu(!menu);
           }}
-          className="fa fa-sort-desc menu-button"
+          className="fa fa-sort-desc menu-button fa-lg"
         ></i>
       </span>
       <div className={menu ? "menu no-select" : "hidden-menu"}>
@@ -47,114 +56,19 @@ const Navbar = () => {
         </NavLink>
       </div>
       <ul className="side-drawer-options-desktop">
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-            setMenu(false);
-          }}
-          className="navlink-desktop"
-          to="/home"
-        >
-          <li className="side-drawer-option-desktop">
-            <img
-              className="option-icon"
-              src={require("../../photos/home.png")}
-              alt="accueil-logo"
+        {elements &&
+          elements.map((element) => (
+            <NavbarNavlink
+              key={element.destination}
+              onClick={element.onClick}
+              text={element.text}
+              icon={element.icon}
+              alt={element.alt}
+              destination={element.destination}
             />
-            Accueil{" "}
-          </li>
-        </NavLink>
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-            setMenu(false);
-          }}
-          className="navlink-desktop"
-          to="/statistiques"
-        >
-          <li className="side-drawer-option-desktop">
-            <img
-              className="option-icon"
-              src={require("../../photos/statistics.png")}
-              alt="statistiques-logo"
-            />
-            Statistiques{" "}
-          </li>
-        </NavLink>
-
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-            setMenu(false);
-          }}
-          className="navlink-desktop"
-          to="/calendrier"
-        >
-          <li className="side-drawer-option-desktop">
-            <img
-              className="option-icon"
-              src={require("../../photos/calendar.png")}
-              alt="calendrier-logo"
-            />
-            Calendrier{" "}
-          </li>
-        </NavLink>
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-            setMenu(false);
-          }}
-          className="navlink-desktop"
-          to="/home/patients"
-        >
-          <li className="side-drawer-option-desktop">
-            {" "}
-            <img
-              className="option-icon"
-              src={require("../../photos/patient.png")}
-              alt="patient-logo"
-            />
-            Patients
-          </li>
-        </NavLink>
-
-        <NavLink
-          onClick={() => {
-            setDrawer(false);
-            setBackDrop(false);
-            setMenu(false);
-          }}
-          className="navlink-desktop"
-          to="/rendez-vous"
-        >
-          <li className="side-drawer-option-desktop">
-            {" "}
-            <img
-              className="option-icon"
-              src={require("../../photos/clock.png")}
-              alt="rendezvous-logo"
-            />
-            Rendez-vous
-          </li>
-        </NavLink>
+          ))}
       </ul>
-      <button
-        id="nav-button"
-        onClick={() => {
-          setDrawer(!drawer);
-          setBackDrop(!backDrop);
-          setMenu(false);
-        }}
-      >
-        {" "}
-        <div className="button-line"></div>
-        <div className="button-line"></div>
-        <div className="button-line"></div>
-      </button>
+      <NavButton onClick={handleNavButtonClick} />
     </nav>
   );
 };
