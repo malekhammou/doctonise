@@ -10,7 +10,7 @@ import { AppContext } from "../../context/appContext";
 import AddPatient from "../add-patient/add-patient";
 
 const HomePage = () => {
-  const { drawer } = useContext(AppContext);
+  const { drawer, user } = useContext(AppContext);
   return (
     <div className="main-wrapper">
       {" "}
@@ -24,7 +24,11 @@ const HomePage = () => {
           component={PatientFile}
         />
         <ProtectedRoute path="/home/patients" exact component={Patients} />
-        <ProtectedRoute path="/home/newPatient" exact component={AddPatient} />
+        <ProtectedRoute
+          path="/home/newPatient"
+          exact
+          render={(props) => <AddPatient {...props} user={user} />}
+        />
         <Redirect from="/home/newPatient*" to="/not-found" />
         <Redirect from="/home/patients*" to="/not-found" />
       </Switch>

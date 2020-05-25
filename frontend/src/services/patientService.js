@@ -11,8 +11,13 @@ export async function getPatientById(doctorId, patientId) {
   );
   return patient;
 }
+export async function addPatient(patientObject) {
+  const { data: patient } = await http.post(`${apiEndPoint}`, patientObject);
+  return patient;
+}
 
 export default {
   getpatients,
   getPatientById,
+  addPatient,
 };

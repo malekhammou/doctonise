@@ -1,4 +1,14 @@
-.form-wrapper {
-  height: 100%;
-  background-color: rebeccapurple;
+.add-patient-form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  padding: 2.2em;
+}
+#add-patient-form {
+  width: 25rem;
+}
+.add-patient-form-button {
+  background-color: #3b555e;
+  color: white;
 }
