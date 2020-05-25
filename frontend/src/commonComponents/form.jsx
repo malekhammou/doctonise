@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./input";
 import Select from "./select";
+import Datepicker from "./datePicker/datePicker";
 
 class Form extends Component {
   state = {
@@ -47,6 +48,12 @@ class Form extends Component {
 
     this.setState({ data, errors });
   };
+  handleDateChange = (e) => {
+    const date = new Date(`${e.year}-${e.month}-${e.day}`).toLocaleDateString(
+      "fr-FR"
+    );
+    console.log(date);
+  };
 
   renderButton(label, buttonClass) {
     return (
@@ -70,7 +77,19 @@ class Form extends Component {
       />
     );
   }
+  renderDateInput(name, label) {
+    const { data, errors } = this.state;
 
+    return (
+      <Datepicker
+        name={name}
+        label={label}
+        value={data[name]}
+        onChange={this.handleDateChange}
+        error={errors[name]}
+      />
+    );
+  }
   renderInput(name, label, type = "text", placeholder) {
     const { data, errors } = this.state;
 

@@ -88,7 +88,7 @@ class AddPatientForm extends Form {
           {this.renderInput("email", "", "text", "Email")}
           {this.renderInput("height", "", "text", "Taille en CM")}
           {this.renderInput("weight", "", "text", "Poids en KG")}
-          {this.renderInput("birthday", "", "text", "Date de naissance")}
+          {this.renderDateInput("birthday", "birthday")}
           {this.renderInput("phone", "", "text", "Téléphone")}
           {this.renderButton("Enregistrer", "add-patient-form-button")}
         </form>
