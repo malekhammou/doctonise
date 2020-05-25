@@ -5,6 +5,7 @@ import SearchBox from "../../commonComponents/searchbox/searchbox";
 import Pagination from "../../utils/paginate";
 import { getpatients } from "../../services/patientService";
 import PatientsList from "../patients-list/patients-list";
+import { NavLink } from "react-router-dom";
 const Patients = () => {
   let { user, setMenu, setDrawer } = useContext(AppContext);
   let {
@@ -53,17 +54,19 @@ const Patients = () => {
     !reachedLastPage && setCurrentPage(currentPage + 1);
   };
   return (
-    <div className="patients-wrapper ">
+    <div className="patients-wrapper">
       <div className="search-box-wrapper">
         <SearchBox value={query} onChange={handleSearch} />
-        <button className="add-patient-button">
-          {" "}
-          <img
-            className={`add-patient-icon`}
-            src={require(`../../photos/add.png`)}
-            alt={`add-logo`}
-          />
-        </button>
+        <NavLink to="/home/add-patient">
+          <button className="add-patient-button">
+            {" "}
+            <img
+              className={`add-patient-icon`}
+              src={require(`../../photos/add.png`)}
+              alt={`add-logo`}
+            />
+          </button>
+        </NavLink>
       </div>
       <PatientsList patients={paginated} />
       {filtered.length > patientsPerPage && (
