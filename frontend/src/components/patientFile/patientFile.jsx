@@ -57,6 +57,12 @@ const PatientFile = ({ match }) => {
             <span className="detail">{patient.firstAppointment}</span>
           </p>
         )}
+        {patient.phone && (
+          <p className="info">
+            <span className="label">Téléphone</span>{" "}
+            <span className="detail">{patient.phone}</span>
+          </p>
+        )}
       </div>
     </div>
   );

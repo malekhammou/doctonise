@@ -23,6 +23,7 @@ const patientSchema = new mongoose.Schema({
     enum: ["A", "AB", "O", "A+", "A-", "AB+", "AB-", "O+", "O-", ""],
   },
   firstAppointment: { type: Date, default: Date.now },
+  phone: { type: String, minlength: 8, maxlength: 20 },
 });
 const Patient = new mongoose.model("Patient", patientSchema);
 validatePatient = (patient) => {
@@ -38,6 +39,7 @@ validatePatient = (patient) => {
       .string()
       .valid(["A", "AB", "O", "A+", "A-", "AB+", "AB-", "O+", "O-"])
       .allow(""),
+    phone: joi.string().min(8).max(20).allow(""),
   };
   return joi.validate(patient, schema);
 };

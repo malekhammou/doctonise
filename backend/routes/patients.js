@@ -34,6 +34,7 @@ router.post("/", async (req, res) => {
       "weight",
       "birthday",
       "bloodFamily",
+      "phone",
     ])
   );
   await patient.save();

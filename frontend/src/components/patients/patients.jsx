@@ -56,6 +56,14 @@ const Patients = () => {
     <div className="patients-wrapper ">
       <div className="search-box-wrapper">
         <SearchBox value={query} onChange={handleSearch} />
+        <button className="add-patient-button">
+          {" "}
+          <img
+            className={`add-patient-icon`}
+            src={require(`../../photos/add.png`)}
+            alt={`add-logo`}
+          />
+        </button>
       </div>
       <PatientsList patients={paginated} />
       {filtered.length > patientsPerPage && (
