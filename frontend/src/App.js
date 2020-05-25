@@ -15,7 +15,7 @@ function App() {
         <ProtectedRoute path="/logout" exact component={Logout} />
         <ProtectedRoute path="/not-found" component={NotFound} />
         <ProtectedRoute path="/home" component={HomePage} />{" "}
-        <Redirect path="/" exact to="/home" />
+        <Redirect from="/" exact to="/home" />
         <Redirect to="/not-found" />
       </Switch>
     </div>

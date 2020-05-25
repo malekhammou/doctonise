@@ -1,8 +1,6 @@
 import React from "react";
 import "./add-patient.css";
-import { useEffect } from "react";
 const AddPatient = () => {
-  useEffect(() => console.log("Hello"));
   return (
     <div className="form-wrapper">
       <p>

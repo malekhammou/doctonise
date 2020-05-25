@@ -57,7 +57,7 @@ const Patients = () => {
     <div className="patients-wrapper">
       <div className="search-box-wrapper">
         <SearchBox value={query} onChange={handleSearch} />
-        <NavLink to="/home/add-patient">
+        <NavLink to="/home/newPatient">
           <button className="add-patient-button">
             {" "}
             <img
