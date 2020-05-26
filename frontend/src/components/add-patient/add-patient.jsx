@@ -82,7 +82,7 @@ class AddPatientForm extends Form {
     return (
       <div className="add-patient-form-wrapper">
         <form id="add-patient-form" onSubmit={this.handleSubmit}>
-          <h3>Nouveau patient:</h3>
+          <span className="form-title">Nouveau patient</span>
           {this.renderInput("firstname", "", "text", "Prénom")}
           {this.renderInput("lastname", "", "text", "Nom")}
           {this.renderInput("email", "", "text", "Email")}

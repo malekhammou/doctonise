@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
-
 const Datepicker = ({ onChange }) => {
   const [selectedDay, setSelectedDay] = useState(null);
   const myCustomLocale = {
@@ -95,7 +94,39 @@ const Datepicker = ({ onChange }) => {
     // is your language rtl or ltr?
     isRtl: false,
   };
-
+  const formatInputValue = () => {
+    if (!selectedDay) return "";
+    return `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`;
+  };
+  const renderCustomInput = ({ ref }) => (
+    <input
+      readOnly
+      ref={ref} // necessary
+      placeholder="Date de naissance"
+      value={
+        selectedDay
+          ? `${selectedDay.day}-${selectedDay.month}-${selectedDay.year}`
+          : "Date de naissance"
+      }
+      style={{
+        display: "block",
+        position: "relative",
+        right: "0.2rem",
+        textAlign: "left",
+        width: "100%",
+        padding: "0",
+        fontSize: "1rem",
+        fontWeight: "400",
+        lineHeight: "1.5",
+        color: "#6C757D",
+        backgroundColor: "#fff",
+        border: "none",
+        borderRadius: "0.25rem",
+        borderRadius: "100px",
+        outline: "none",
+      }}
+    />
+  );
   return (
     <DatePicker
       value={selectedDay}
@@ -103,9 +134,11 @@ const Datepicker = ({ onChange }) => {
         setSelectedDay(e);
         onChange(e);
       }}
-      inputPlaceholder="Select a day"
+      inputPlaceholder="Date de naissance"
       locale={myCustomLocale}
+      formatInputText={formatInputValue}
       shouldHighlightWeekends
+      renderInput={renderCustomInput}
     />
   );
 };

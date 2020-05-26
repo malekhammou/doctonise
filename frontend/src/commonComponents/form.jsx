@@ -49,10 +49,13 @@ class Form extends Component {
     this.setState({ data, errors });
   };
   handleDateChange = (e) => {
-    const date = new Date(`${e.year}-${e.month}-${e.day}`).toLocaleDateString(
-      "fr-FR"
-    );
-    console.log(date);
+    const date = new Date(`${e.year}-${e.month}-${e.day}`);
+    const isoDate = new Date(
+      date.getTime() - date.getTimezoneOffset() * 60000
+    ).toISOString();
+    const data = { ...this.state.data };
+    data.birthday = isoDate;
+    this.setState({ data });
   };
 
   renderButton(label, buttonClass) {
@@ -81,13 +84,23 @@ class Form extends Component {
     const { data, errors } = this.state;
 
     return (
-      <Datepicker
-        name={name}
-        label={label}
-        value={data[name]}
-        onChange={this.handleDateChange}
-        error={errors[name]}
-      />
+      <div
+        className="form-control "
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "1.5em",
+          marginBottom: "1em",
+        }}
+      >
+        <Datepicker
+          name={name}
+          label={label}
+          value={data[name]}
+          onChange={this.handleDateChange}
+          error={errors[name]}
+        />
+      </div>
     );
   }
   renderInput(name, label, type = "text", placeholder) {

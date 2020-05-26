@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
 .add-patient-form-wrapper {
   display: flex;
   justify-content: center;
@@ -11,4 +13,11 @@
 .add-patient-form-button {
   background-color: #3b555e;
   color: white;
+}
+.form-title {
+  font-family: "Poppins", sans-serif;
+  text-align: left;
+  font-weight: 700;
+  font-size: 1.3em;
+  display: block;
 }

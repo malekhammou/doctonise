@@ -3,7 +3,9 @@
 .patients-list {
   font-family: "Poppins", sans-serif;
   display: flex;
+  flex-direction: column-reverse;
   flex-wrap: wrap;
   padding: 0.45em;
   justify-content: center;
+  align-items: center;
 }
