@@ -27,8 +27,27 @@
 .detail {
   font-weight: 700;
 }
-.patient-full-name {
-  font-weight: 600;
-  font-size: 2em;
+.full-name {
+  margin-left: 0.4em;
+}
+.patient-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 1.8em;
   margin-top: 0.2em;
+}
+.update-patient-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.update-patient-button:active,
+.update-patient-button:focus {
+  outline: none;
+}
+.update-patient-icon {
+  border: none;
+  height: 1.3em;
+  width: 1.3em;
 }

@@ -2,6 +2,7 @@ import "./patientFile.css";
 import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../context/appContext";
 import { getPatientById } from "../../services/patientService";
+import { NavLink } from "react-router-dom";
 const PatientFile = ({ match }) => {
   const [patient, setPatient] = useState([]);
   const { user } = useContext(AppContext);
@@ -16,10 +17,24 @@ const PatientFile = ({ match }) => {
   }, [user._id, match.params.id]);
   return (
     <div className="main">
-      <div className="patient-full-name">
+      <div className="patient-header">
         {" "}
-        {patient.firstname} {patient.lastname}
+        <span className="full-name">
+          {" "}
+          {patient.firstname} {patient.lastname}
+        </span>
+        <NavLink to="/home/newPatient">
+          <button className="update-patient-button">
+            {" "}
+            <img
+              className={`update-patient-icon`}
+              src={require(`../../photos/settings.png`)}
+              alt={`update-logo`}
+            />
+          </button>
+        </NavLink>
       </div>
+
       <div className="infos">
         {patient.email && (
           <p className="info">

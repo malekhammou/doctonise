@@ -121,7 +121,6 @@ const Datepicker = ({ onChange }) => {
         color: "#6C757D",
         backgroundColor: "#fff",
         border: "none",
-        borderRadius: "0.25rem",
         borderRadius: "100px",
         outline: "none",
       }}
