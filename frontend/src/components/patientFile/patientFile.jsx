@@ -23,7 +23,7 @@ const PatientFile = ({ match }) => {
           {" "}
           {patient.firstname} {patient.lastname}
         </span>
-        <NavLink to="/home/newPatient">
+        <NavLink to={`/home/patients/${patient._id}/settings`}>
           <button className="update-patient-button">
             {" "}
             <img
