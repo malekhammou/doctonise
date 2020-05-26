@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import DatePicker from "react-modern-calendar-datepicker";
-const Datepicker = ({ onChange }) => {
-  const [selectedDay, setSelectedDay] = useState(null);
+const Datepicker = ({ onChange, value }) => {
+  const [selectedDay, setSelectedDay] = useState(value);
   const myCustomLocale = {
     // months list by order
     months: [

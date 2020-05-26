@@ -22,7 +22,7 @@ const HomePage = () => {
         <ProtectedRoute
           path="/home/patients/:id/settings"
           exact
-          component={PatientSettings}
+          render={(props) => <PatientSettings {...props} userId={user._id} />}
         />
         <ProtectedRoute
           path="/home/patients/:id"
