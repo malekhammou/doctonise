@@ -1,8 +1,9 @@
 import React from "react";
 import Joi from "joi-browser";
 import "./update-patient.css";
-import { addPatient, getPatientById } from "../../services/patientService";
+import { getPatientById, updatePatient } from "../../services/patientService";
 import { getcurrentUser } from "../../services/userService";
+import { formatDate } from "../../utils/date";
 import Form from "../../commonComponents/form";
 class PatientSettings extends Form {
   async componentDidMount() {
@@ -10,29 +11,25 @@ class PatientSettings extends Form {
       await getcurrentUser()._id,
       this.props.match.params.id
     );
-    this.setState({ data: this.mapToViewModel(data[0]) });
+    this.setState({
+      data: this.mapToViewModel(data[0]).patient,
+      dateObj: this.mapToViewModel(data[0]).dateObj,
+    });
   }
-  formatDate = (isoString) => {
-    const dateArray = new Date(isoString)
-      .toLocaleDateString()
-      .toString()
-      .split("/");
-    return {
-      day: parseInt(dateArray[1], 10),
-      month: parseInt(dateArray[0], 10),
-      year: parseInt(dateArray[2], 10),
-    };
-  };
+
   mapToViewModel(patient) {
     return {
-      firstname: patient.firstname,
-      lastname: patient.lastname,
-      email: patient.email,
-      height: patient.height,
-      weight: patient.weight,
-      birthday: this.formatDate(patient.birthday),
-      bloodFamily: patient.birthday,
-      phone: patient.phone,
+      dateObj: formatDate(patient.birthday),
+      patient: {
+        firstname: patient.firstname,
+        lastname: patient.lastname,
+        email: patient.email,
+        height: patient.height,
+        weight: patient.weight,
+        birthday: patient.birthday,
+        bloodFamily: patient.bloodFamily,
+        phone: patient.phone,
+      },
     };
   }
   state = {
@@ -97,9 +94,9 @@ class PatientSettings extends Form {
   doSubmit = async () => {
     try {
       const patient = { ...this.state.data };
-      patient.doctorId = this.props.user._id;
-      await addPatient(patient);
-      window.location = "/home/patients";
+      patient.doctorId = this.props.userId;
+      await updatePatient(this.props.match.params.id, patient);
+      window.location = `/home/patients/${this.props.match.params.id}`;
     } catch (exception) {
       if (exception.response && exception.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -110,9 +107,8 @@ class PatientSettings extends Form {
   };
 
   render() {
-    console.log(this.state.data);
     return (
-      <div className="add-patient-form-wrapper">
+      <div className="update-patient-form-wrapper">
         <form id="update-patient-form" onSubmit={this.handleSubmit}>
           <span className="form-title">
             Modifier les informations du patient
@@ -122,8 +118,7 @@ class PatientSettings extends Form {
           {this.renderInput("email", "", "text", "Email")}
           {this.renderInput("height", "", "text", "Taille en CM")}
           {this.renderInput("weight", "", "text", "Poids en KG")}
-          {this.state.data.birthday &&
-            this.renderDateInput("birthday", "birthday")}
+          {this.state.dateObj && this.renderDateInput("birthday", "birthday")}
           {this.renderInput("phone", "", "text", "Téléphone")}
           {this.renderButton("Enregistrer", "update-patient-form-button")}
         </form>

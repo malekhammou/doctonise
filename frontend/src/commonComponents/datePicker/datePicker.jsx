@@ -4,7 +4,6 @@ import DatePicker from "react-modern-calendar-datepicker";
 const Datepicker = ({ onChange, value }) => {
   const [selectedDay, setSelectedDay] = useState(value);
   const myCustomLocale = {
-    // months list by order
     months: [
       "Janvier",
       "Février",
@@ -118,7 +117,7 @@ const Datepicker = ({ onChange, value }) => {
         fontSize: "1rem",
         fontWeight: "400",
         lineHeight: "1.5",
-        color: "#6C757D",
+        color: "black",
         backgroundColor: "#fff",
         border: "none",
         borderRadius: "100px",

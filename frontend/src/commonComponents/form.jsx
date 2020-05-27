@@ -81,7 +81,7 @@ class Form extends Component {
     );
   }
   renderDateInput(name, label) {
-    const { data, errors } = this.state;
+    const { errors } = this.state;
 
     return (
       <div
@@ -96,7 +96,7 @@ class Form extends Component {
         <Datepicker
           name={name}
           label={label}
-          value={data[name]}
+          value={this.state.dateObj}
           onChange={this.handleDateChange}
           error={errors[name]}
         />
