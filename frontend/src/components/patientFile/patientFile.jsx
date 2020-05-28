@@ -1,13 +1,11 @@
 import "./patientFile.css";
 import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../context/appContext";
-import { PatientSettings } from "../../context/patientSettingsContext";
-import { getPatientById } from "../../services/patientService";
+import { getPatientById, deletePatient } from "../../services/patientService";
 import { NavLink } from "react-router-dom";
 const PatientFile = ({ match }) => {
   const [patient, setPatient] = useState([]);
   const { user } = useContext(AppContext);
-  const { settingsMenu, setSettingsMenu } = useContext(PatientSettings);
 
   useEffect(() => {
     async function getPatient() {
@@ -16,57 +14,57 @@ const PatientFile = ({ match }) => {
         setPatient(patient[0]);
       }
     }
-    setSettingsMenu("bottom-items-hidden");
+
     getPatient();
-  }, [user._id, match.params.id, setSettingsMenu]);
+  }, [user._id, match.params.id]);
+
+  const removePatient = async () => {
+    try {
+      await deletePatient(match.params.id);
+      window.location = "/home/patients";
+    } catch (ex) {
+      alert("Veuillez réssayer plus tard");
+    }
+  };
   return (
     <div className="main">
       <div className="patient-header">
         {" "}
-        <div className="top-items">
-          <span className="full-name">
-            {" "}
-            {patient.firstname} {patient.lastname}
-          </span>
-
-          <button
-            className="settings-button"
-            onClick={() => {
-              settingsMenu === "bottom-items-hidden"
-                ? setSettingsMenu("bottom-items")
-                : setSettingsMenu("bottom-items-hidden");
-            }}
-          >
-            {" "}
-            <img
-              className={`settings-icon`}
-              src={require(`../../photos/settings.png`)}
-              alt={`update-logo`}
-            />
-          </button>
-        </div>
-        <div className={settingsMenu}>
-          <NavLink to={`/home/patients/${patient._id}/settings`}>
-            <button className="update-patient-button">
-              {" "}
-              <img
-                className={`update-patient-icon`}
-                src={require(`../../photos/edit.png`)}
-                alt={`update-logo`}
-              />
-            </button>
-          </NavLink>
-          <NavLink to={`/home/patients/${patient._id}/settings`}>
-            <button className="remove-patient-button">
+        <div className="patient-options">
+          <div className="option-area">
+            <NavLink
+              className="patient-option-navlink"
+              to={`/home/patients/${patient._id}/settings`}
+            >
+              <button className="update-patient-button">
+                {" "}
+                <img
+                  className={`update-patient-icon`}
+                  src={require(`../../photos/edit.png`)}
+                  alt={`update-logo`}
+                />
+              </button>
+            </NavLink>
+          </div>
+          <div className="separation"></div>
+          <div className="option-area">
+            <button
+              className="remove-patient-button"
+              onClick={() => removePatient()}
+            >
               {" "}
               <img
                 className={`remove-patient-icon`}
-                src={require(`../../photos/remove.png`)}
-                alt={`update-logo`}
+                src={require(`../../photos/trash.png`)}
+                alt={`delete-logo`}
               />
             </button>
-          </NavLink>
+          </div>
         </div>
+        <span className="full-name">
+          {" "}
+          {patient.firstname} {patient.lastname}
+        </span>
       </div>
       <div className="options"></div>
       <div className="infos">

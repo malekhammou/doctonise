@@ -22,10 +22,14 @@ export async function updatePatient(patientId, patientObject) {
   );
   return patient;
 }
-
+export async function deletePatient(patientId) {
+  const { data: patient } = await http.delete(`${apiEndPoint}/${patientId}`);
+  return patient;
+}
 export default {
   getpatients,
   getPatientById,
   addPatient,
   updatePatient,
+  deletePatient,
 };

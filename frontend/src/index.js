@@ -9,16 +9,14 @@ import { BrowserRouter } from "react-router-dom";
 import { AppProvider } from "./context/appContext";
 import { PatientProvider } from "./context/patientContext";
 import { NavbarProvider } from "./context/navbarContext";
-import { PatientSettingsProvider } from "./context/patientSettingsContext";
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <AppProvider>
         <NavbarProvider>
           <PatientProvider>
-            <PatientSettingsProvider>
-              <App />
-            </PatientSettingsProvider>
+            <App />
           </PatientProvider>
         </NavbarProvider>
       </AppProvider>

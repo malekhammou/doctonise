@@ -36,55 +36,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   font-weight: 500;
   font-size: 1.8em;
   margin-top: 0.2em;
 }
-.top-items {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.bottom-items {
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: flex-end;
-  justify-content: flex-end;
-  transition: all 0.2s ease-out;
-  animation-name: slide-in;
-  animation-duration: 0.2s;
-  padding-right: 0.2em;
-}
-.bottom-items-hidden {
-  position: absolute;
-  bottom: 100%;
-  transform: translateY(-100%);
-}
-@keyframes slide-in {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.settings-button {
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
-.remove-patient-button {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  bottom: 0.3em;
-}
+
+.remove-patient-button,
 .update-patient-button {
   background-color: transparent;
   border: none;
@@ -92,34 +50,31 @@
   margin: 0;
   padding: 0;
   position: relative;
-  bottom: 0.7em;
+  bottom: 0.39em;
+}
+.option-area:first-child {
+  width: 100%;
+  border-top-left-radius: 1em;
+  border-bottom-left-radius: 1em;
+}
+.option-area:last-child {
+  width: 100%;
+  border-top-right-radius: 1em;
+  border-bottom-right-radius: 1em;
+}
+.option-area:hover {
+  background-color: #f2f5f9;
 }
 
-.settings-icon {
-  border: none;
-  height: 0.9em;
-  width: 0.9em;
-}
 .remove-patient-icon,
 .update-patient-icon {
   border: none;
   height: 0.9em;
   width: 0.9em;
+  padding: 0;
+  margin: 0;
 }
-.option-button {
-  background-color: white;
-  border: 0.07em solid black;
-  border-radius: 2em;
-  margin: 1em;
-  width: 6em;
-}
-.options-container {
-  transition: all 1s ease-in;
-}
-.options-container-hidden {
-  position: fixed;
-  transform: translateX(500%);
-}
+
 .settings-button:active,
 .settings-button:focus,
 .remove-patient-button:active,
@@ -127,4 +82,28 @@
 .remove-patient-button:focus,
 .update-patient-button:focus {
   outline: none;
+}
+.patient-options {
+  margin-top: 0.3em;
+  margin-bottom: 0.4em;
+  display: flex;
+  justify-content: center;
+  border: black solid 0.05em;
+  width: 2.5em;
+  height: 1em;
+  border-radius: 1em;
+  padding: 0.015em;
+}
+.patient-option-navlink {
+  padding: 0;
+  margin: 0;
+  height: fit-content;
+}
+
+.separation {
+  background-color: black;
+  height: 0.96em;
+  width: 0.11em;
+  position: relative;
+  bottom: 0.05em;
 }
