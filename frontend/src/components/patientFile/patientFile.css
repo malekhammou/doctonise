@@ -4,7 +4,7 @@
 }
 .infos {
   background-color: #f2f5f9;
-  margin: 1em 0.6em 1em 0.6em;
+  margin: 0em 0.6em 1em 0.6em;
   border-radius: 0.2em;
 }
 .info {
@@ -28,26 +28,103 @@
   font-weight: 700;
 }
 .full-name {
+  font-size: 0.8em;
+  font-weight: 500;
   margin-left: 0.4em;
 }
 .patient-header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   font-weight: 500;
   font-size: 1.8em;
   margin-top: 0.2em;
 }
-.update-patient-button {
+.top-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bottom-items {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  justify-content: flex-end;
+  transition: all 0.2s ease-out;
+  animation-name: slide-in;
+  animation-duration: 0.2s;
+  padding-right: 0.2em;
+}
+.bottom-items-hidden {
+  position: absolute;
+  bottom: 100%;
+  transform: translateY(-100%);
+}
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.settings-button {
   background-color: transparent;
   border: none;
   outline: none;
 }
-.update-patient-button:active,
-.update-patient-button:focus {
+.remove-patient-button {
+  background-color: transparent;
+  border: none;
   outline: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  bottom: 0.3em;
 }
+.update-patient-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  bottom: 0.7em;
+}
+
+.settings-icon {
+  border: none;
+  height: 0.9em;
+  width: 0.9em;
+}
+.remove-patient-icon,
 .update-patient-icon {
   border: none;
-  height: 1.3em;
-  width: 1.3em;
+  height: 0.9em;
+  width: 0.9em;
+}
+.option-button {
+  background-color: white;
+  border: 0.07em solid black;
+  border-radius: 2em;
+  margin: 1em;
+  width: 6em;
+}
+.options-container {
+  transition: all 1s ease-in;
+}
+.options-container-hidden {
+  position: fixed;
+  transform: translateX(500%);
+}
+.settings-button:active,
+.settings-button:focus,
+.remove-patient-button:active,
+.update-patient-button:active,
+.remove-patient-button:focus,
+.update-patient-button:focus {
+  outline: none;
 }
