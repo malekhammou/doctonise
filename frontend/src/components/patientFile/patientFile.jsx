@@ -3,8 +3,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../context/appContext";
 import { ConfirmDialogContext } from "../../context/confirmDialogContext";
 import { getPatientById, deletePatient } from "../../services/patientService";
-import { NavLink } from "react-router-dom";
 import ConfirmDialog from "../../commonComponents/confirmDialog";
+import { NavLink } from "react-router-dom";
 const PatientFile = ({ match }) => {
   const [patient, setPatient] = useState([]);
   const { user } = useContext(AppContext);

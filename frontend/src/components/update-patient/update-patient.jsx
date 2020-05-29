@@ -3,6 +3,7 @@ import Joi from "joi-browser";
 import "./update-patient.css";
 import { getPatientById, updatePatient } from "../../services/patientService";
 import { getcurrentUser } from "../../services/userService";
+import ConfirmDialog from "../../commonComponents/confirmDialog";
 import { formatDate } from "../../utils/date";
 import Form from "../../commonComponents/form";
 class PatientSettings extends Form {
@@ -16,7 +17,6 @@ class PatientSettings extends Form {
       dateObj: this.mapToViewModel(data[0]).dateObj,
     });
   }
-
   mapToViewModel(patient) {
     return {
       dateObj: formatDate(patient.birthday),
@@ -53,34 +53,28 @@ class PatientSettings extends Form {
       bloodFamily: "",
       phone: "",
     },
+    confirmOpen: false,
   };
-
   schema = {
     firstname: Joi.string()
       .min(2)
       .max(50)
       .required()
       .error(() => {
-        return {
-          message: "Ce champs est obligatoire.",
-        };
+        return { message: "Ce champs est obligatoire." };
       }),
     lastname: Joi.string()
       .min(2)
       .max(50)
       .required()
       .error(() => {
-        return {
-          message: "Ce champs est obligatoire.",
-        };
+        return { message: "Ce champs est obligatoire." };
       }),
     email: Joi.string()
       .email()
       .allow("")
       .error(() => {
-        return {
-          message: "Veuillez entrer une adresse valide.",
-        };
+        return { message: "Veuillez entrer une adresse valide." };
       }),
     height: Joi.number().min(1).max(300).allow(""),
     weight: Joi.number().min(0).max(800).allow(""),
@@ -90,8 +84,7 @@ class PatientSettings extends Form {
       .allow(""),
     phone: Joi.string().max(20).allow(""),
   };
-
-  doSubmit = async () => {
+  updatePatient = async () => {
     try {
       const patient = { ...this.state.data };
       patient.doctorId = this.props.userId;
@@ -105,26 +98,44 @@ class PatientSettings extends Form {
       }
     }
   };
-
+  setConfirmOpen = (value = false) => {
+    this.setState({ confirmOpen: value });
+  };
+  doSubmit = async () => {
+    this.setConfirmOpen(true);
+  };
   render() {
     return (
       <div className="update-patient-form-wrapper">
+        {" "}
+        <ConfirmDialog
+          title={`Modifier ${this.state.data.firstname}`}
+          open={this.state.confirmOpen}
+          setOpen={this.setConfirmOpen}
+          onConfirm={() => {
+            this.updatePatient();
+          }}
+        >
+          {" "}
+          Enregistrer les modifications?{" "}
+        </ConfirmDialog>{" "}
         <form id="update-patient-form" onSubmit={this.handleSubmit}>
+          {" "}
           <span className="form-title">
-            Modifier les informations du patient
-          </span>
-          {this.renderInput("firstname", "", "text", "Prénom")}
-          {this.renderInput("lastname", "", "text", "Nom")}
-          {this.renderInput("email", "", "text", "Email")}
-          {this.renderInput("height", "", "text", "Taille en CM")}
-          {this.renderInput("weight", "", "text", "Poids en KG")}
-          {this.state.dateObj && this.renderDateInput("birthday", "birthday")}
-          {this.renderInput("phone", "", "text", "Téléphone")}
-          {this.renderButton("Enregistrer", "update-patient-form-button")}
-        </form>
+            {" "}
+            Modifier les informations du patient{" "}
+          </span>{" "}
+          {this.renderInput("firstname", "", "text", "Prénom")}{" "}
+          {this.renderInput("lastname", "", "text", "Nom")}{" "}
+          {this.renderInput("email", "", "text", "Email")}{" "}
+          {this.renderInput("height", "", "text", "Taille en CM")}{" "}
+          {this.renderInput("weight", "", "text", "Poids en KG")}{" "}
+          {this.state.dateObj && this.renderDateInput("birthday", "birthday")}{" "}
+          {this.renderInput("phone", "", "text", "Téléphone")}{" "}
+          {this.renderButton("Enregistrer", "update-patient-form-button")}{" "}
+        </form>{" "}
       </div>
     );
   }
 }
-
 export default PatientSettings;
