@@ -1,11 +1,14 @@
 import "./patientFile.css";
 import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../context/appContext";
+import { ConfirmDialogContext } from "../../context/confirmDialogContext";
 import { getPatientById, deletePatient } from "../../services/patientService";
 import { NavLink } from "react-router-dom";
+import ConfirmDialog from "../../commonComponents/confirmDialog";
 const PatientFile = ({ match }) => {
   const [patient, setPatient] = useState([]);
   const { user } = useContext(AppContext);
+  const { confirmOpen, setConfirmOpen } = useContext(ConfirmDialogContext);
 
   useEffect(() => {
     async function getPatient() {
@@ -28,6 +31,14 @@ const PatientFile = ({ match }) => {
   };
   return (
     <div className="main">
+      <ConfirmDialog
+        title={`Supprimer ${patient.firstname}`}
+        open={confirmOpen}
+        setOpen={setConfirmOpen}
+        onConfirm={() => removePatient()}
+      >
+        Cette action est irréversible.
+      </ConfirmDialog>
       <div className="patient-header">
         {" "}
         <div className="patient-options">
@@ -50,7 +61,7 @@ const PatientFile = ({ match }) => {
           <div className="option-area">
             <button
               className="remove-patient-button"
-              onClick={() => removePatient()}
+              onClick={() => setConfirmOpen(true)}
             >
               {" "}
               <img
