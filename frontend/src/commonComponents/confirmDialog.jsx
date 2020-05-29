@@ -5,7 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 const ConfirmDialog = (props) => {
-  const { title, children, open, setOpen, onConfirm } = props;
+  const { title, children, open, setOpen, onConfirm, backgroundColor } = props;
   return (
     <Dialog
       open={open}
@@ -18,7 +18,7 @@ const ConfirmDialog = (props) => {
         <Button
           variant="contained"
           onClick={() => setOpen(false)}
-          color="default"
+          style={{ borderRadius: "2em" }}
         >
           Annuler
         </Button>
@@ -28,7 +28,11 @@ const ConfirmDialog = (props) => {
             setOpen(false);
             onConfirm();
           }}
-          style={{ backgroundColor: " #71c846" }}
+          style={{
+            backgroundColor: backgroundColor,
+            color: "white",
+            borderRadius: "2em",
+          }}
         >
           Confirmer
         </Button>

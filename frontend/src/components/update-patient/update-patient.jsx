@@ -109,6 +109,7 @@ class PatientSettings extends Form {
       <div className="update-patient-form-wrapper">
         {" "}
         <ConfirmDialog
+          backgroundColor="#72aa62"
           title={`Modifier ${this.state.data.firstname}`}
           open={this.state.confirmOpen}
           setOpen={this.setConfirmOpen}

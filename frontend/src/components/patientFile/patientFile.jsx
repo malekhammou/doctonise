@@ -32,6 +32,7 @@ const PatientFile = ({ match }) => {
   return (
     <div className="main">
       <ConfirmDialog
+        backgroundColor="#dd010b"
         title={`Supprimer ${patient.firstname}`}
         open={confirmOpen}
         setOpen={setConfirmOpen}
