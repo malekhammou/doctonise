@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+#searchField {
+  margin: 0;
+  height: 2.2em;
+  text-align: left;
+  border: 0.05em solid #f7f7f7;
+  width: 15em;
+  padding-left: 0.4em;
+  border-radius: 5px;
+  font-size: 1.1em;
+  box-shadow: 0 0 0.4em rgba(0, 0, 0, 0.12),
+    inset 0 0 0.09em rgba(0, 0, 0, 0.39);
+}
+ul {
+  list-style-type: none;
+}
+#suggestions {
+  overflow: scroll;
+  overflow-x: hidden;
+  height: 18em;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  list-style: none;
+}
+#suggestions li {
+  background: white;
+  list-style: none;
+  border-bottom: 1px solid #d8d8d8;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+input:focus {
+  outline: none;
+}
+.highlighted {
+  background: #ffc600;
+}

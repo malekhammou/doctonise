@@ -4,6 +4,7 @@ const Input = ({ name, label, error, ...rest }) => {
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
       <input
+        autoComplete="off"
         {...rest}
         name={name}
         id={name}

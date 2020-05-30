@@ -4,6 +4,12 @@ const patientSchema = new mongoose.Schema({
   doctorId: { type: mongoose.ObjectId, required: true },
   firstname: { type: String, minlength: 2, max: 50, required: true },
   lastname: { type: String, minlength: 2, maxlength: 50, required: true },
+  fullname: {
+    type: String,
+    default: function () {
+      return `${this.firstname} ${this.lastname}`;
+    },
+  },
   email: {
     type: String,
 
