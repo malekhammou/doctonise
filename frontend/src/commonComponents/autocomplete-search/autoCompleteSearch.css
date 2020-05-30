@@ -36,12 +36,18 @@ ul {
   padding: 20px;
   display: flex;
   justify-content: space-between;
-  text-transform: capitalize;
+
   cursor: pointer;
 }
 input:focus {
   outline: none;
 }
 .highlighted {
-  background: #ffc600;
+  background: lightgrey;
+}
+.patient-link {
+  color: black;
+}
+.patient-link:hover {
+  text-decoration: none;
 }

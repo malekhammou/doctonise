@@ -35,7 +35,10 @@ const Patients = () => {
         </button>
       </NavLink>
       <AutoCompleteSearch
-        data={_.map(patients, "fullname")}
+        data={_.map(
+          patients,
+          _.partial(_.ary(_.pick, 2), _, ["fullname", "_id"])
+        )}
         placeholder="Trouver un patient"
       />
     </div>
