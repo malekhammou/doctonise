@@ -101,7 +101,9 @@ const PatientFile = ({ match }) => {
         {patient.birthday && (
           <p className="info">
             <span className="label">Date de naissance</span>{" "}
-            <span className="detail">{patient.birthday}</span>
+            <span className="detail">
+              {new Date(patient.birthday).toLocaleDateString("fr-FR")}
+            </span>
           </p>
         )}
         {patient.bloodFamily && (
@@ -113,7 +115,10 @@ const PatientFile = ({ match }) => {
         {patient.firstAppointment && (
           <p className="info">
             <span className="label">Premiére visite</span>{" "}
-            <span className="detail">{patient.firstAppointment}</span>
+            <span className="detail">
+              {" "}
+              {new Date(patient.firstAppointment).toLocaleDateString("fr-FR")}
+            </span>
           </p>
         )}
         {patient.phone && (
