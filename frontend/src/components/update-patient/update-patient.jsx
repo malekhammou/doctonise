@@ -24,9 +24,9 @@ class PatientSettings extends Form {
         firstname: patient.firstname,
         lastname: patient.lastname,
         email: patient.email,
-        height: patient.height,
-        weight: patient.weight,
-        birthday: patient.birthday,
+        height: patient.height || "",
+        weight: patient.weight || "",
+        birthday: patient.birthday || "",
         bloodFamily: patient.bloodFamily,
         phone: patient.phone,
       },
@@ -134,9 +134,9 @@ class PatientSettings extends Form {
           {this.renderInput("firstname", "", "text", "Prénom")}{" "}
           {this.renderInput("lastname", "", "text", "Nom")}{" "}
           {this.renderInput("email", "", "text", "Email")}{" "}
-          {this.renderInput("height", "", "text", "Taille en CM")}{" "}
-          {this.renderInput("weight", "", "text", "Poids en KG")}{" "}
-          {this.state.dateObj && this.renderDateInput("birthday", "birthday")}{" "}
+          {this.renderInput("height", "", "number", "Taille en CM")}{" "}
+          {this.renderInput("weight", "", "number", "Poids en KG")}{" "}
+          {this.renderDateInput("birthday", "birthday")}{" "}
           {this.renderInput("bloodFamily", "", "text", "Groupe Sanguin")}
           {this.renderInput("phone", "", "text", "Téléphone")}{" "}
           {this.renderButton("Enregistrer", "update-patient-form-button")}{" "}
