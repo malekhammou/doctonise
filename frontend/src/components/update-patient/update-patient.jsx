@@ -81,7 +81,12 @@ class PatientSettings extends Form {
     birthday: Joi.date().allow(""),
     bloodFamily: Joi.string()
       .valid(["A", "AB", "O", "A+", "A-", "AB+", "AB-", "O+", "O-"])
-      .allow(""),
+      .allow("")
+      .error(() => {
+        return {
+          message: "A, AB, O, A+, A-, AB+, AB-, O+, O-",
+        };
+      }),
     phone: Joi.string().max(20).allow(""),
   };
   updatePatient = async () => {
@@ -132,6 +137,7 @@ class PatientSettings extends Form {
           {this.renderInput("height", "", "text", "Taille en CM")}{" "}
           {this.renderInput("weight", "", "text", "Poids en KG")}{" "}
           {this.state.dateObj && this.renderDateInput("birthday", "birthday")}{" "}
+          {this.renderInput("bloodFamily", "", "text", "Groupe Sanguin")}
           {this.renderInput("phone", "", "text", "Téléphone")}{" "}
           {this.renderButton("Enregistrer", "update-patient-form-button")}{" "}
         </form>{" "}
