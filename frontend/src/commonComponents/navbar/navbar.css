@@ -56,10 +56,13 @@
   cursor: pointer;
 }
 .menu {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
   border: gray solid 0.03em;
   position: absolute;
   top: 3.3em;
-  right: 0.05em;
+  right: 0.2em;
   padding-right: 1em;
   height: fit-content;
   background-color: #f2f5f9;

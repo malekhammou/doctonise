@@ -152,6 +152,26 @@ export const NavbarProvider = (props) => {
         optionicon: "option-icon",
       },
     },
+    {
+      onClick: function handleHide() {
+        setDrawer(false);
+        setBackDrop(false);
+      },
+      text: "Changer mot de passe",
+      icon: "password",
+      alt: "password",
+      destination: "home/change-password",
+      className: {
+        navlinkDesktop: "navlink-desktop",
+        navlink: "navlink",
+        sideDrawerOption: "side-drawer-option",
+        sideDrawerOptionDesktop: "side-drawer-option-desktop",
+        optionIconDesktop: "option-icon-desktop",
+        logoutNavlink: "logout-navlink",
+        menuOption: "menu-option",
+        optionicon: "option-icon",
+      },
+    },
   ]);
   const handleNavButtonClick = () => {
     setDrawer(!drawer);

@@ -8,7 +8,10 @@ import GreetingMessage from "../greeting-message/greeting-message";
 const Navbar = () => {
   const { user, menu, setMenu } = useContext(AppContext);
   const { elements, handleNavButtonClick } = useContext(NavbarContext);
-  const element = elements.find((e) => e.alt === "logout2");
+  const items = elements.filter(
+    (e) => e.alt === "password" || e.alt === "logout2"
+  );
+  console.log(items);
   const toggleMenu = () => {
     setMenu(!menu);
   };
@@ -17,22 +20,25 @@ const Navbar = () => {
       <GreetingMessage user={user} onClick={toggleMenu} />
       <div className={menu ? "menu no-select" : "hidden-menu"}>
         {" "}
-        <NavbarNavlink
-          className={element.className.logoutNavlink}
-          listItemClassName={element.className.menuOption}
-          imgClassName={element.className.optionIconDesktop}
-          key={element.destination}
-          onClick={element.onClick}
-          text={element.text}
-          icon={element.icon}
-          alt={element.alt}
-          destination={element.destination}
-        />
+        {items.map((item) => (
+          <NavbarNavlink
+            className={item.className.logoutNavlink}
+            listItemClassName={item.className.menuOption}
+            imgClassName={item.className.optionIconDesktop}
+            key={item.destination}
+            onClick={item.onClick}
+            text={item.text}
+            icon={item.icon}
+            alt={item.alt}
+            destination={item.destination}
+          />
+        ))}
       </div>
       <ul className="side-drawer-options-desktop">
         {elements.map(
           (element) =>
-            element.destination !== "logout" && (
+            element.destination !== "logout" &&
+            element.destination !== "home/change-password" && (
               <NavbarNavlink
                 className={element.className.navlinkDesktop}
                 listItemClassName={element.className.sideDrawerOptionDesktop}

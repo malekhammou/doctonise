@@ -9,7 +9,7 @@ import PatientFile from "../patientFile/patientFile";
 import { AppContext } from "../../context/appContext";
 import AddPatient from "../add-patient/add-patient";
 import PatientSettings from "../update-patient/update-patient";
-
+import Password from "../password/password";
 const HomePage = () => {
   const { drawer, user } = useContext(AppContext);
   return (
@@ -35,6 +35,12 @@ const HomePage = () => {
           exact
           render={(props) => <AddPatient {...props} user={user} />}
         />
+        <ProtectedRoute
+          path="/home/change-password"
+          exact
+          render={(props) => <Password {...props} user={user} />}
+        />
+        <Redirect from="/home/change-password*" to="/not-found" />
         <Redirect from="/home/newPatient*" to="/not-found" />
         <Redirect from="/home/patients*" to="/not-found" />
       </Switch>

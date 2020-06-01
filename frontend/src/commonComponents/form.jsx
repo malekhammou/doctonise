@@ -103,6 +103,7 @@ class Form extends Component {
 
     return (
       <Input
+        autocomplete="off"
         placeholder={placeholder}
         type={type}
         name={name}
