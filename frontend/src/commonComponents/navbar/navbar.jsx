@@ -11,7 +11,6 @@ const Navbar = () => {
   const items = elements.filter(
     (e) => e.alt === "password" || e.alt === "logout2"
   );
-  console.log(items);
   const toggleMenu = () => {
     setMenu(!menu);
   };

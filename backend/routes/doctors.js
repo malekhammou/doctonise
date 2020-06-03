@@ -57,4 +57,20 @@ router.delete("/:id", validateObjectId, async (req, res) => {
     .run();
   res.send(doctor);
 });
+router.post("/changePassword", async (req, res) => {
+  let doctor = await Doctor.findOne({ email: req.body.email });
+  if (!doctor) return res.status(400).send("Invalid email");
+  const validPassword = await bcrypt.compare(
+    req.body.currentPassword,
+    doctor.password
+  );
+  if (!validPassword) return res.status(400).send("Invalid password.");
+  const salt = await bcrypt.genSalt(10);
+  await bcrypt.hash(req.body.newPassword, salt);
+  doctor = await Doctor.findOneAndUpdate(
+    { email: req.body.email },
+    { password: await bcrypt.hash(req.body.newPassword, salt) }
+  );
+  res.send(doctor);
+});
 module.exports = router;
