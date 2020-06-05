@@ -18,7 +18,16 @@ export function getcurrentUser() {
     return null;
   }
 }
+export async function changePassword(user) {
+  const { data } = await http.post(`${apiUrl}/doctors/changePassword`, {
+    email: user.email,
+    currentPassword: user.currentPassword,
+    newPassword: user.newPassword,
+  });
+  return data;
+}
 export default {
   login,
   getcurrentUser,
+  changePassword,
 };
