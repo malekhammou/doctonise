@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+form {
+  font-family: "Source Sans Pro", sans-serif;
+}
 .form-group {
   display: flex;
   flex-direction: column;
