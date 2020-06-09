@@ -36,7 +36,7 @@ export const NavbarProvider = (props) => {
       text: "Statistiques",
       icon: "statistics",
       alt: "statistics",
-      destination: "statistiques",
+      destination: "home/statistiques",
       className: {
         navlinkDesktop: "navlink-desktop",
         navlink: "navlink",

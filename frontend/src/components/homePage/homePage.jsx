@@ -10,6 +10,7 @@ import { AppContext } from "../../context/appContext";
 import AddPatient from "../add-patient/add-patient";
 import PatientSettings from "../update-patient/update-patient";
 import Password from "../password/password";
+import Stats from "../stats/stats";
 const HomePage = () => {
   const { drawer, user } = useContext(AppContext);
   return (
@@ -30,6 +31,7 @@ const HomePage = () => {
           component={PatientFile}
         />
         <ProtectedRoute path="/home/patients" exact component={Patients} />
+        <ProtectedRoute path="/home/statistiques" exact component={Stats} />
         <ProtectedRoute
           path="/home/newPatient"
           exact
