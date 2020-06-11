@@ -35,6 +35,7 @@ router.post("/", async (req, res) => {
       "birthday",
       "bloodFamily",
       "phone",
+      "gender",
     ])
   );
   await patient.save();
@@ -53,6 +54,7 @@ router.put("/:id", validateObjectId, async (req, res) => {
       weight: req.body.weight,
       birthday: req.body.birthday,
       bloodFamily: req.body.bloodFamily,
+      gender: req.body.gender,
       phone: req.body.phone,
     },
     { new: true }
