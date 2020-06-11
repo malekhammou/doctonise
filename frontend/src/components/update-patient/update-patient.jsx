@@ -29,6 +29,7 @@ class PatientSettings extends Form {
         birthday: patient.birthday || "",
         bloodFamily: patient.bloodFamily,
         phone: patient.phone,
+        gender: patient.gender,
       },
     };
   }
@@ -42,6 +43,7 @@ class PatientSettings extends Form {
       birthday: "",
       bloodFamily: "",
       phone: "",
+      gender: "",
     },
     errors: {
       firstname: "",
@@ -52,6 +54,7 @@ class PatientSettings extends Form {
       birthday: "",
       bloodFamily: "",
       phone: "",
+      gender: "",
     },
     confirmOpen: false,
   };
@@ -85,6 +88,14 @@ class PatientSettings extends Form {
       .error(() => {
         return {
           message: "A, AB, O, A+, A-, AB+, AB-, O+, O-",
+        };
+      }),
+    gender: Joi.string()
+      .valid(["Homme", "Femme"])
+      .allow("")
+      .error(() => {
+        return {
+          message: "Homme,Femme",
         };
       }),
     phone: Joi.string().max(20).allow(""),
@@ -139,6 +150,7 @@ class PatientSettings extends Form {
           {this.renderDateInput("birthday", "birthday")}{" "}
           {this.renderInput("bloodFamily", "", "text", "Groupe Sanguin")}
           {this.renderInput("phone", "", "text", "Téléphone")}{" "}
+          {this.renderInput("gender", "", "text", "Sexe")}
           {this.renderButton("Enregistrer", "update-patient-form-button")}{" "}
         </form>{" "}
       </div>

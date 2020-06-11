@@ -14,6 +14,7 @@ class AddPatientForm extends Form {
       birthday: "",
       bloodFamily: "",
       phone: "",
+      gender: "",
     },
     errors: {
       firstname: "",
@@ -24,6 +25,7 @@ class AddPatientForm extends Form {
       birthday: "",
       bloodFamily: "",
       phone: "",
+      gender: "",
     },
   };
 
@@ -65,6 +67,14 @@ class AddPatientForm extends Form {
           message: "A, AB, O, A+, A-, AB+, AB-, O+, O-",
         };
       }),
+    gender: Joi.string()
+      .valid(["Homme", "Femme"])
+      .allow("")
+      .error(() => {
+        return {
+          message: "Homme,Femme",
+        };
+      }),
     phone: Joi.string().max(20).allow(""),
   };
 
@@ -95,6 +105,7 @@ class AddPatientForm extends Form {
           {this.renderInput("weight", "", "text", "Poids en KG")}
           {this.renderDateInput("birthday", "birthday")}
           {this.renderInput("bloodFamily", "", "text", "Groupe Sanguin")}
+          {this.renderInput("gender", "", "text", "Sexe")}
           {this.renderInput("phone", "", "text", "Téléphone")}
           {this.renderButton("Enregistrer", "add-patient-form-button")}
         </form>
