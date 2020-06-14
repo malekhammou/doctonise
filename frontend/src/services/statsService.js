@@ -7,6 +7,13 @@ export async function getPatientsCount(doctorId) {
   );
   return count;
 }
+export async function getGenderStats(doctorId) {
+  const { data: stats } = await http.get(
+    `${apiEndPoint}/${doctorId}/genderStats`
+  );
+  return stats;
+}
 export default {
   getPatientsCount,
+  getGenderStats,
 };
