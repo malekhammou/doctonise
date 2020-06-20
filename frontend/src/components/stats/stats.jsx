@@ -5,6 +5,8 @@ import { AppContext } from "../../context/appContext";
 const Stats = () => {
   let { user } = useContext(AppContext);
   const [count, setCount] = useState(0);
+  const [countMale, setCountMale] = useState(0);
+  const [countFemale, setCountFemale] = useState(0);
   const [malePercentage, setMalePercentage] = useState(0);
   const [femalePercentage, setFemalePercentage] = useState(0);
 
@@ -15,6 +17,9 @@ const Stats = () => {
         const data = await getGenderStats(user._id);
         setMalePercentage(data.formattedMalePercentage);
         setFemalePercentage(data.formattedFemalePercentage);
+        setCountMale(data.countMale);
+        setCountFemale(data.countFemale);
+
         setCount(count.count);
       }
     }
@@ -27,12 +32,12 @@ const Stats = () => {
         <span className="card-label">Patients</span>
       </div>
       <div className="card">
+        <span className="card-label">{countMale} Hommes</span>
         <span className="card-value">{malePercentage}%</span>
-        <span className="card-label">Hommes</span>
       </div>
       <div className="card">
+        <span className="card-label">{countFemale} Femmes</span>
         <span className="card-value">{femalePercentage}%</span>
-        <span className="card-label">Femme</span>
       </div>
     </div>
   );
