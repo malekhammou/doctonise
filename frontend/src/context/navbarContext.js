@@ -57,7 +57,7 @@ export const NavbarProvider = (props) => {
       text: "Calendrier",
       icon: "calendar",
       alt: "calendar",
-      destination: "calendrier",
+      destination: "home/calendar",
       className: {
         navlinkDesktop: "navlink-desktop",
         navlink: "navlink",
