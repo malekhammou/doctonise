@@ -1,19 +1,24 @@
 import React from "react";
 import "./calendar.css";
 import {
-  Inject,
-  ScheduleComponent,
-  Day,
-  Week,
-  WorkWeek,
-  Month,
-  Agenda,
-} from "@syncfusion/ej2-react-schedule";
+  Scheduler,
+  AgendaView,
+  TimelineView,
+  DayView,
+  WeekView,
+  MonthView,
+} from "@progress/kendo-react-scheduler";
+
 const Calendar = () => {
+  const data = [];
   return (
-    <ScheduleComponent currentView="Month">
-      <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-    </ScheduleComponent>
+    <Scheduler>
+      <AgendaView />
+      <TimelineView />
+      <DayView />
+      <WeekView />
+      <MonthView />
+    </Scheduler>
   );
 };
 
