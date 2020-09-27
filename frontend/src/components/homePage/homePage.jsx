@@ -11,7 +11,7 @@ import AddPatient from "../add-patient/add-patient";
 import PatientSettings from "../update-patient/update-patient";
 import Password from "../password/password";
 import Stats from "../stats/stats";
-import Calendar from "../calendar/calendar";
+
 const HomePage = () => {
   const { drawer, user } = useContext(AppContext);
   return (
@@ -33,7 +33,7 @@ const HomePage = () => {
         />
         <ProtectedRoute path="/home/patients" exact component={Patients} />
         <ProtectedRoute path="/home/statistiques" exact component={Stats} />
-        <ProtectedRoute path="/home/calendar" exact component={Calendar} />
+
         <ProtectedRoute
           path="/home/newPatient"
           exact
@@ -44,6 +44,8 @@ const HomePage = () => {
           exact
           render={(props) => <Password {...props} user={user} />}
         />
+
+        <Redirect from="/home/calendar" to="/not-found" />
         <Redirect from="/home/change-password*" to="/not-found" />
         <Redirect from="/home/newPatient*" to="/not-found" />
         <Redirect from="/home/patients*" to="/not-found" />
