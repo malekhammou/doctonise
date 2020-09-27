@@ -56,6 +56,7 @@ router.put("/:id", validateObjectId, async (req, res) => {
       bloodFamily: req.body.bloodFamily,
       gender: req.body.gender,
       phone: req.body.phone,
+      fullname: `${req.body.firstname} ${req.body.lastname}`,
     },
     { new: true }
   );
