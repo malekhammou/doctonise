@@ -1,5 +1,6 @@
 import "./patientFile.css";
 import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
 import { AppContext } from "../../context/appContext";
 import { ConfirmDialogContext } from "../../context/confirmDialogContext";
 import { getPatientById, deletePatient } from "../../services/patientService";
@@ -7,6 +8,7 @@ import ConfirmDialog from "../../commonComponents/confirmDialog";
 import { NavLink } from "react-router-dom";
 const PatientFile = ({ match }) => {
   const [patient, setPatient] = useState([]);
+  const [upload, setUpload] = useState({});
   const { user } = useContext(AppContext);
   const { confirmOpen, setConfirmOpen } = useContext(ConfirmDialogContext);
 
@@ -28,6 +30,22 @@ const PatientFile = ({ match }) => {
     } catch (ex) {
       alert("Veuillez réssayer plus tard");
     }
+  };
+  const onFileChange = (e) => {
+    setUpload(e.target.files[0]);
+  };
+  const onUploadSubmit = (e) => {
+    e.preventDefault();
+    console.log(upload);
+    /*   axios
+      .post("http://localhost:3001/api/uploads", {
+        patientId: patient._id,
+        doctorId: user._id,
+        content: upload,
+      })
+      .then((res) => {
+        console.log(res);
+      }); */
   };
   return (
     <div className="main">
@@ -133,6 +151,20 @@ const PatientFile = ({ match }) => {
             <span className="detail">{patient.gender}</span>
           </p>
         )}
+      </div>
+      <div className="container">
+        <div className="row">
+          <form onSubmit={onUploadSubmit}>
+            <div className="form-group">
+              <input onChange={onFileChange} type="file" />
+            </div>
+            <div className="form-group">
+              <button className="btn btn-primary" type="submit">
+                Upload
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
