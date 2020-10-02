@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
-const joi = require("joi");
 const uploadSchema = new mongoose.Schema({
   doctorId: { type: mongoose.ObjectId },
-  PatientId: { type: mongoose.ObjectId },
-  content: {
-    type: String,
-  },
+  patientId: { type: mongoose.ObjectId },
+  imageUrl: String,
 });
 const Upload = new mongoose.model("Upload", uploadSchema);
 

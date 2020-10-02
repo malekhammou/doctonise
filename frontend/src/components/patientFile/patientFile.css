@@ -107,3 +107,20 @@
   position: relative;
   top: 0.07em;
 }
+.uploader {
+  display: flex;
+}
+.upload-button {
+  background-color: cadetblue;
+  height: fit-content;
+  border-radius: 2em;
+  font-weight: 700;
+}
+@media (min-width: 550px) {
+  .infos {
+    width: 50%;
+  }
+  .card-body {
+    display: flex;
+  }
+}
