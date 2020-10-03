@@ -83,7 +83,7 @@ class AddPatientForm extends Form {
       const patient = { ...this.state.data };
       patient.doctorId = this.props.user._id;
       await addPatient(patient);
-      window.location = "/home/patients";
+      window.location = "/home";
     } catch (exception) {
       if (exception.response && exception.response.status === 400) {
         const errors = { ...this.state.errors };

@@ -109,6 +109,8 @@
 }
 .uploader {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 .upload-button {
   background-color: cadetblue;
@@ -116,11 +118,14 @@
   border-radius: 2em;
   font-weight: 700;
 }
-@media (min-width: 550px) {
+@media (min-width: 626px) {
   .infos {
-    width: 50%;
+    width: 30%;
   }
   .card-body {
     display: flex;
   }
+}
+.uploads-header {
+  font-weight: 700;
 }

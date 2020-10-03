@@ -61,7 +61,7 @@ const AutoCompleteSearch = ({ data, placeholder }) => {
                 <NavLink
                   key={item._id}
                   className="patient-link"
-                  to={`/home/patients/${item._id}`}
+                  to={`/home/${item._id}`}
                 >
                   <li key={item._id}>
                     <span

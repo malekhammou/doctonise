@@ -63,7 +63,7 @@ class Password extends Form {
         newPassword: this.state.data.newPassword,
       };
       await changePassword(user);
-      window.location = "/home/patients";
+      window.location = "/home";
     } catch (exception) {
       if (exception.response && exception.response.status === 400) {
         const errors = { ...this.state.errors };

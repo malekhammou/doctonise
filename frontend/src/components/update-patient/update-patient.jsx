@@ -105,7 +105,7 @@ class PatientSettings extends Form {
       const patient = { ...this.state.data };
       patient.doctorId = this.props.userId;
       await updatePatient(this.props.match.params.id, patient);
-      window.location = `/home/patients/${this.props.match.params.id}`;
+      window.location = `/home/${this.props.match.params.id}`;
     } catch (exception) {
       if (exception.response && exception.response.status === 400) {
         const errors = { ...this.state.errors };
