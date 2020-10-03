@@ -1,0 +1,22 @@
+.patients-wrapper {
+  display: flex;
+  padding: 0.8em 1em 0 0;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 4.2em;
+}
+.add-patient-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.add-patient-button:active,
+.add-patient-button:focus {
+  outline: none;
+}
+.add-patient-icon {
+  border: none;
+  height: 2.4em;
+  width: 2.4em;
+  margin-right: 0.5em;
+}

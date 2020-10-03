@@ -1,0 +1,5 @@
+Extract upload server | Frontend==================================>Done
+Add route to get images for patient | Backend===================>Done
+Fetch images for patient in his file | Frontend==============>Done
+Refresh UI after upload | Frontend==================>Done
+Remove patients UI and move its content to homepage UI | Frontend============>Done

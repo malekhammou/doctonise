@@ -1,27 +1,20 @@
 import "./patientFile.css";
 import React, { useEffect, useState, useContext, useCallback } from "react";
+import ConfirmDialog from "../../commonComponents/confirmDialog";
 import ImageViewer from "react-simple-image-viewer";
-import axios from "axios";
 import { AppContext } from "../../context/appContext";
 import { ConfirmDialogContext } from "../../context/confirmDialogContext";
 import { getPatientById, deletePatient } from "../../services/patientService";
-import ConfirmDialog from "../../commonComponents/confirmDialog";
+import { uploadImage, getpatientImages } from "../../services/uploadService";
 import { NavLink } from "react-router-dom";
 const PatientFile = ({ match }) => {
   const [patient, setPatient] = useState([]);
   const [upload, setUpload] = useState("");
-
-  const { user } = useContext(AppContext);
-  const { confirmOpen, setConfirmOpen } = useContext(ConfirmDialogContext);
   const [currentImage, setCurrentImage] = useState(0);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
-  const images = [
-    "https://res.cloudinary.com/malekhammou/image/upload/v1601677072/dgjni0uoj9z44redqn1u.jpg",
-    "https://res.cloudinary.com/malekhammou/image/upload/v1569654953/Vishal.jpg",
-    "https://res.cloudinary.com/malekhammou/image/upload/v1569654950/Joshua.jpg",
-    "https://res.cloudinary.com/malekhammou/image/upload/v1569654937/Polly.jpg",
-    "https://res.cloudinary.com/malekhammou/image/upload/v1569654928/Mark.jpg",
-  ];
+  const [images, setImages] = useState([]);
+  const { user } = useContext(AppContext);
+  const { confirmOpen, setConfirmOpen } = useContext(ConfirmDialogContext);
   const openImageViewer = useCallback((index) => {
     setCurrentImage(index);
     setIsViewerOpen(true);
@@ -31,13 +24,16 @@ const PatientFile = ({ match }) => {
     setCurrentImage(0);
     setIsViewerOpen(false);
   };
-  const preset = "scbr7vtd";
-  const url = "https://api.cloudinary.com/v1_1/malekhammou/image/upload";
+
   useEffect(() => {
     async function getPatient() {
       if (user._id) {
         const patient = await getPatientById(user._id, match.params.id);
         setPatient(patient[0]);
+        console.log(user._id, match.params.id);
+        const images = await getpatientImages(match.params.id, user._id);
+        setImages(images);
+        console.log(images);
       }
     }
 
@@ -47,7 +43,7 @@ const PatientFile = ({ match }) => {
   const removePatient = async () => {
     try {
       await deletePatient(match.params.id);
-      window.location = "/home/patients";
+      window.location = "/home";
     } catch (ex) {
       alert("Veuillez réssayer plus tard");
     }
@@ -56,22 +52,9 @@ const PatientFile = ({ match }) => {
     setUpload(e.target.files[0]);
   };
   const onSubmit = async () => {
-    const formData = new FormData();
-    formData.append("file", upload);
-    formData.append("upload_preset", preset);
     try {
-      const res = await axios.post(url, formData);
-      const imageUrl = res.data.secure_url;
-      const patientId = patient._id;
-      console.log(patientId);
-      const doctorId = user._id;
-      const image = await axios.post("http://localhost:3001/api/uploads", {
-        imageUrl,
-        patientId,
-        doctorId,
-      });
-
-      setUpload(image.data);
+      setUpload(await uploadImage(patient, user, upload));
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
@@ -93,7 +76,7 @@ const PatientFile = ({ match }) => {
           <div className="option-area">
             <NavLink
               className="patient-option-navlink"
-              to={`/home/patients/${patient._id}/settings`}
+              to={`/home/${patient._id}/settings`}
             >
               <button className="update-patient-button">
                 {" "}
@@ -182,35 +165,37 @@ const PatientFile = ({ match }) => {
           )}
         </div>
         <div className="uploader">
+          <span className="uploads-header">Piéces jointes</span>
+
+          <div>
+            {images.map((src, index) => (
+              <img
+                src={src}
+                onClick={() => openImageViewer(index)}
+                width="80"
+                height="100"
+                key={index}
+                style={{ margin: "0.5em" }}
+                alt=""
+              />
+            ))}
+
+            {isViewerOpen && (
+              <ImageViewer
+                src={images}
+                currentIndex={currentImage}
+                onClose={closeImageViewer}
+              />
+            )}
+          </div>
           <div className="file-field input-field">
             <div className="btn">
               <input type="file" name="upload" onChange={onChange} />
             </div>
+            <button onClick={onSubmit} className="btn upload-button">
+              upload
+            </button>
           </div>
-          <button onClick={onSubmit} className="btn upload-button">
-            upload
-          </button>
-        </div>
-        <div>
-          {images.map((src, index) => (
-            <img
-              src={src}
-              onClick={() => openImageViewer(index)}
-              width="80"
-              height="100"
-              key={index}
-              style={{ margin: "0.5em" }}
-              alt=""
-            />
-          ))}
-
-          {isViewerOpen && (
-            <ImageViewer
-              src={images}
-              currentIndex={currentImage}
-              onClose={closeImageViewer}
-            />
-          )}
         </div>
       </div>
     </div>

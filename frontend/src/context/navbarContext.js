@@ -69,27 +69,7 @@ export const NavbarProvider = (props) => {
         optionicon: "option-icon",
       },
     },
-    {
-      onClick: function handleHide() {
-        setDrawer(false);
-        setBackDrop(false);
-        setMenu(false);
-      },
-      text: "Patients",
-      icon: "patient",
-      alt: "patient",
-      destination: "home/patients",
-      className: {
-        navlinkDesktop: "navlink-desktop",
-        navlink: "navlink",
-        sideDrawerOption: "side-drawer-option",
-        sideDrawerOptionDesktop: "side-drawer-option-desktop",
-        optionIconDesktop: "option-icon-desktop",
-        logoutNavlink: "logout-navlink",
-        menuOption: "menu-option",
-        optionicon: "option-icon",
-      },
-    },
+
     {
       onClick: function handleHide() {
         setDrawer(false);
